@@ -71,13 +71,17 @@ a:active, .noFocus, .noFocus:focus {
     text-align: center;
     overflow: hidden;
     padding: 15px 0;
-    margin: 5px 0 0 5px;
+    text-decoration: none;
     display: inline-block;
     border: 0;
     -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
+       -moz-border-radius: 4px;
+         -o-border-radius: 4px;
+            border-radius: 4px;
+    }
+
+.ui-button span {
+    text-decoration: none;
     }
 
 .cancel-button span,
@@ -95,9 +99,9 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #fff, #f8f8f8);
     background:         linear-gradient(to bottom, #fff, #f8f8f8);
     -webkit-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
-    -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
-    -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
-    box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+       -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+         -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+            box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
     }
 
 .confirm-button.ui-state-hover {
@@ -109,16 +113,16 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #fff, #eeeeee);
     background:         linear-gradient(to bottom, #fff, #eeeeee);
     -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
-    -moz-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
-    -o-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+       -moz-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+         -o-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
     }
 
 .confirm-button.ui-state-focus {
     -webkit-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
-    -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
-    -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
-    box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+       -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+         -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+            box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
     }
 
 .confirm-button.ui-state-active {
@@ -130,12 +134,14 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #dadada, #f1f1f1);
     background:         linear-gradient(to bottom, #dadada, #f1f1f1);
     -webkit-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
-    -moz-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
-    -o-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
-    box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+       -moz-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+         -o-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+            box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
     }
 
 .default-button {
+    color: #ffffff;
+    font-weight: bold;
     background: #00abee;
     background: -webkit-gradient(linear, left top, left bottom, from(#00b8fc), to(#009ee2));
     background: -webkit-linear-gradient(top, #00b8fc, #009ee2);
@@ -144,9 +150,9 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #00b8fc, #009ee2);
     background:         linear-gradient(to bottom, #00b8fc, #009ee2);
     -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+       -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+         -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+            box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
     }
 
 .default-button.ui-state-hover {
@@ -158,16 +164,16 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #00b7fb, #0095da);
     background:         linear-gradient(to bottom, #00b7fb, #0095da);
     -webkit-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
-    -moz-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
-    -o-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
-    box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+       -moz-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+         -o-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+            box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
     }
 
 .default-button.ui-state-focus {
     -webkit-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
-    -moz-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
-    -o-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
-    box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+       -moz-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+         -o-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+            box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
     }
 
 .default-button.ui-state-active {
@@ -179,12 +185,14 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #007ab7, #00a8f2);
     background:         linear-gradient(to bottom, #007ab7, #00a8f2);
     -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
-    box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+       -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+         -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+            box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
     }
 
 .cancel-button {
+    color: #ffffff;
+    font-weight: bold;
     background: #f53836;
     background: -webkit-gradient(linear, left top, left bottom, from(#f85855), to(#f21e1e));
     background: -webkit-linear-gradient(top, #f85855, #f21e1e);
@@ -207,9 +215,9 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #ff3d39, #f21e1e);
     background:         linear-gradient(to bottom, #ff3d39, #f21e1e);
     -webkit-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
-    -moz-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
-    -o-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
-    box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+       -moz-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+         -o-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+            box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
     }
 
 .cancel-button.ui-state-focus {
@@ -221,9 +229,9 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #f85a56, #f53433);
     background:         linear-gradient(to bottom, #f85a56, #f53433);
     -webkit-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
-    -moz-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
-    -o-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
-    box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+       -moz-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+         -o-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+            box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
     }
 
 .cancel-button.ui-state-active {
@@ -235,7 +243,7 @@ a:active, .noFocus, .noFocus:focus {
     background:      -o-linear-gradient(top, #c30703, #ea0707);
     background:         linear-gradient(to bottom, #c30703, #ea0707);
     -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
-    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
-    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
-    box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+       -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+         -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+            box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
     }
