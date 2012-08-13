@@ -26,7 +26,7 @@
 
     <script>
         $(function() {
-            $('button, input:submit, a').button();
+            $('.button').button();
             $('a').click(function(){return false;}); //отменяет нажатие по якорю
 
         });
@@ -34,21 +34,20 @@
 
 </head>
 <body>
-<h3>Button</h3>
-<button class="confirm-button">Confirm Button</button>
-<button class="default-button">Default Button</button>
-<button class="cancel-button">Cancel Button</button>
+    <h3>Button</h3>
+    <button class="button confirm-button">Confirm Button</button>
+    <button class="button default-button">Default Button</button>
+    <button class="button cancel-button">Cancel Button</button>
 
 
-<h3>&lt;a&gt;</h3>
-<a class="confirm-button">Confirm Button</a>
-<a class="default-button">Default Button</a>
-<a class="cancel-button">Cancel Button</a>
+    <h3>&lt;a&gt;</h3>
+    <a class="button confirm-button">Confirm Button</a>
+    <a class="button default-button">Default Button</a>
+    <a class="button cancel-button">Cancel Button</a>
 
-<h3>Input:submit</h3>
-<input type="submit" class="confirm-button" value="Confirm Button">
-<input type="submit" class="default-button" value="Default Button">
-<input type="submit" class="cancel-button" value="Cancel Button">
-
+    <h3>Input:submit</h3>
+    <input type="submit" class="button confirm-button" value="Confirm Button">
+    <input type="submit" class="button default-button" value="Default Button">
+    <input type="submit" class="button cancel-button" value="Cancel Button">
 </body>
 </html>
