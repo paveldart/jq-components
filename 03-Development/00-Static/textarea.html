@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test TextArea</title>
+
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .conteiner {
+            width: 500px;
+            margin: 10px;
+            }
+
+        textarea,
+        pre {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            border: 0;
+            }
+
+        .expandingArea {
+            position: relative;
+            border: 1px solid #888;
+            background: #fff;
+            }
+
+        .expandingArea > textarea,
+        .expandingArea > pre {
+            padding: 5px;
+            background: transparent;
+            font: 400 13px/16px helvetica, arial, sans-serif;
+            /* Make the text soft-wrap */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            }
+
+        .expandingArea > textarea {
+            /* The border-box box model is used to allow
+            * padding whilst still keeping the overall width
+            * at exactly that of the containing element.
+            */
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%;
+            /* This height is used when JS is disabled */
+            height: 100px;
+            }
+
+        .expandingArea.active > textarea {
+            /* Hide any scrollbars */
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            /* Remove WebKit user-resize widget */
+            resize: none;
+            }
+
+        .expandingArea > pre {
+            display: none;
+            }
+        .expandingArea.active > pre {
+            display: block;
+            /* Hide the text; just using it for sizing */
+            visibility: hidden;
+            }
+
+    </style>
+
+    <script src="scripts/jquery1.8.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+    <div class="conteiner">
+        <div class="expandingArea">
+            <pre><span></span><br /></pre>
+            <textarea rows="4" cols="10">Watch me expand to encompass your every word!</textarea>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function makeExpandingArea(container) {
+            var area = container.querySelector('textarea');
+            var span = container.querySelector('span');
+            if (area.addEventListener) {
+                area.addEventListener('input', function() {
+                    span.textContent = area.value;
+                }, false);
+                span.textContent = area.value;
+            } else if (area.attachEvent) {
+                // IE8 compatibility
+                area.attachEvent('onpropertychange', function() {
+                    span.innerText = area.value;
+                });
+                span.innerText = area.value;
+            }
+            // Enable extra CSS
+            container.className += ' active';
+        }
+
+        var areas = document.querySelectorAll('.expandingArea');
+        var l = areas.length;
+
+        while (l--) {
+            makeExpandingArea(areas[l]);
+        }
+    </script>
+</body>
+</html>
