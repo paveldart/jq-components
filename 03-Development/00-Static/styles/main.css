@@ -1,0 +1,63 @@
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a, span, small, img, blockquote, table, tr, th, td, input, textarea, select {
+    padding: 0;
+    margin: 0
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000;
+    background: #fff;
+    vertical-align: baseline;
+    font-weight: normal;
+}
+
+table, tr, th, td {
+    border-collapse: collapse;
+    border: none
+}
+
+input, textarea {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000
+}
+
+a img {
+    border: none
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.isNotTouch a:hover {
+}
+
+.clear, .veneer {
+    clear: both;
+    overflow: hidden;
+}
+
+ul, ol {
+    list-style: none
+}
+
+a:active, .noFocus, .noFocus:focus {
+    outline: none;
+}
+
+.noResize {
+    resize: none
+}
+
+.noSelect {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    -o-user-select: none
+}
+
+.no-wrap {
+    white-space: nowrap
+}
