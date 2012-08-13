@@ -61,3 +61,181 @@ a:active, .noFocus, .noFocus:focus {
 .no-wrap {
     white-space: nowrap
 }
+
+
+/*button - кнопочки */
+.ui-button {
+    font-size: 14px;
+    line-height: 18px;
+    width: 190px;
+    text-align: center;
+    overflow: hidden;
+    padding: 15px 0;
+    margin: 5px 0 0 5px;
+    display: inline-block;
+    border: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    }
+
+.cancel-button span,
+.default-button span {
+    color: #ffffff;
+    font-weight: bold;
+    }
+
+.confirm-button {
+    background: #fbfbfb;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f8f8f8));
+    background: -webkit-linear-gradient(top, #fff, #f8f8f8);
+    background:    -moz-linear-gradient(top, #fff, #f8f8f8);
+    background:     -ms-linear-gradient(top, #fff, #f8f8f8);
+    background:      -o-linear-gradient(top, #fff, #f8f8f8);
+    background:         linear-gradient(to bottom, #fff, #f8f8f8);
+    -webkit-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+    -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+    -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+    box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
+    }
+
+.confirm-button.ui-state-hover {
+    background: #f6f6f6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eeeeee));
+    background: -webkit-linear-gradient(top, #fff, #eeeeee);
+    background:    -moz-linear-gradient(top, #fff, #eeeeee);
+    background:     -ms-linear-gradient(top, #fff, #eeeeee);
+    background:      -o-linear-gradient(top, #fff, #eeeeee);
+    background:         linear-gradient(to bottom, #fff, #eeeeee);
+    -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+    -moz-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+    -o-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
+    }
+
+.confirm-button.ui-state-focus {
+    -webkit-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+    -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+    -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+    box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
+    }
+
+.confirm-button.ui-state-active {
+    background: #e5e5e5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#dadada), to(#f1f1f1));
+    background: -webkit-linear-gradient(top, #dadada, #f1f1f1);
+    background:    -moz-linear-gradient(top, #dadada, #f1f1f1);
+    background:     -ms-linear-gradient(top, #dadada, #f1f1f1);
+    background:      -o-linear-gradient(top, #dadada, #f1f1f1);
+    background:         linear-gradient(to bottom, #dadada, #f1f1f1);
+    -webkit-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+    -moz-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+    -o-box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+    box-shadow: 0 4px 2px -2px #C9C9C9 inset, 0 0 0 1px #c4c6cc;
+    }
+
+.default-button {
+    background: #00abee;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00b8fc), to(#009ee2));
+    background: -webkit-linear-gradient(top, #00b8fc, #009ee2);
+    background:    -moz-linear-gradient(top, #00b8fc, #009ee2);
+    background:     -ms-linear-gradient(top, #00b8fc, #009ee2);
+    background:      -o-linear-gradient(top, #00b8fc, #009ee2);
+    background:         linear-gradient(to bottom, #00b8fc, #009ee2);
+    -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    }
+
+.default-button.ui-state-hover {
+    background: #00a5e9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#00b7fb), to(#0095da));
+    background: -webkit-linear-gradient(top, #00b7fb, #0095da);
+    background:    -moz-linear-gradient(top, #00b7fb, #0095da);
+    background:     -ms-linear-gradient(top, #00b7fb, #0095da);
+    background:      -o-linear-gradient(top, #00b7fb, #0095da);
+    background:         linear-gradient(to bottom, #00b7fb, #0095da);
+    -webkit-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+    -moz-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+    -o-box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+    box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
+    }
+
+.default-button.ui-state-focus {
+    -webkit-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+    -moz-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+    -o-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+    box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
+    }
+
+.default-button.ui-state-active {
+    background: #009be2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#007ab7), to(#00a8f2));
+    background: -webkit-linear-gradient(top, #007ab7, #00a8f2);
+    background:    -moz-linear-gradient(top, #007ab7, #00a8f2);
+    background:     -ms-linear-gradient(top, #007ab7, #00a8f2);
+    background:      -o-linear-gradient(top, #007ab7, #00a8f2);
+    background:         linear-gradient(to bottom, #007ab7, #00a8f2);
+    -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
+    }
+
+.cancel-button {
+    background: #f53836;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f85855), to(#f21e1e));
+    background: -webkit-linear-gradient(top, #f85855, #f21e1e);
+    background:    -moz-linear-gradient(top, #f85855, #f21e1e);
+    background:     -ms-linear-gradient(top, #f85855, #f21e1e);
+    background:      -o-linear-gradient(top, #f85855, #f21e1e);
+    background:         linear-gradient(to bottom, #f85855, #f21e1e);
+    -webkit-box-shadow: 0 -1px 0 0 #f63d3b inset, 0 0 0 1px #d60000;
+    -moz-box-shadow: 0 -1px 0 0 #f63d3b inset, 0 0 0 1px #d60000;
+    -o-box-shadow: 0 -1px 0 0 #f63d3b inset, 0 0 0 1px #d60000;
+    box-shadow: 0 -1px 0 0 #f63d3b inset, 0 0 0 1px #d60000;
+    }
+
+.cancel-button.ui-state-hover {
+    background: #f53836;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff3d39), to(#f21e1e));
+    background: -webkit-linear-gradient(top, #ff3d39, #f21e1e);
+    background:    -moz-linear-gradient(top, #ff3d39, #f21e1e);
+    background:     -ms-linear-gradient(top, #ff3d39, #f21e1e);
+    background:      -o-linear-gradient(top, #ff3d39, #f21e1e);
+    background:         linear-gradient(to bottom, #ff3d39, #f21e1e);
+    -webkit-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+    -moz-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+    -o-box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+    box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
+    }
+
+.cancel-button.ui-state-focus {
+    background: #f53635;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f85a56), to(#f53433));
+    background: -webkit-linear-gradient(top, #f85a56, #f53433);
+    background:    -moz-linear-gradient(top, #f85a56, #f53433);
+    background:     -ms-linear-gradient(top, #f85a56, #f53433);
+    background:      -o-linear-gradient(top, #f85a56, #f53433);
+    background:         linear-gradient(to bottom, #f85a56, #f53433);
+    -webkit-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+    -moz-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+    -o-box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+    box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
+    }
+
+.cancel-button.ui-state-active {
+    background: #d50705;
+    background: -webkit-gradient(linear, left top, left bottom, from(#c30703), to(#ea0707));
+    background: -webkit-linear-gradient(top, #c30703, #ea0707);
+    background:    -moz-linear-gradient(top, #c30703, #ea0707);
+    background:     -ms-linear-gradient(top, #c30703, #ea0707);
+    background:      -o-linear-gradient(top, #c30703, #ea0707);
+    background:         linear-gradient(to bottom, #c30703, #ea0707);
+    -webkit-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+    -moz-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+    -o-box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+    box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
+    }
