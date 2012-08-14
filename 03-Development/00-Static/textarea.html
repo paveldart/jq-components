@@ -21,19 +21,24 @@
             }
 
         .expandingArea {
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 0 0 1px #E0E2E8;
+            margin: 20px 0;
+            overflow: hidden;
             position: relative;
-            border: 1px solid #888;
-            background: #fff;
             }
 
         .expandingArea > textarea,
         .expandingArea > pre {
-            padding: 5px;
+            color: #5B5F64;
+            padding: 15px;
             background: transparent;
             font: 400 13px/16px helvetica, arial, sans-serif;
             /* Make the text soft-wrap */
             white-space: pre-wrap;
             word-wrap: break-word;
+            outline: none;
+            -moz-appearance: none;
             }
 
         .expandingArea > textarea {
@@ -70,10 +75,37 @@
             visibility: hidden;
             }
 
+
+        .expandingArea.ui-state-hover {
+            box-shadow: 0 0 0 1px #BEBEBE inset;
+            }
+
+        .expandingArea.ui-state-active {
+            box-shadow: 0 1px 4px 0 #BEBEBE inset;
+            }
+
     </style>
 
     <script src="scripts/jquery1.8.js" type="text/javascript"></script>
 
+    <script>
+        $(function() {
+            $('.expandingArea')
+                .hover(function() {
+                   $(this).addClass('ui-state-hover');
+                }, function() {
+                   $(this).removeClass('ui-state-hover');
+                });
+
+            $('.expandingArea textarea')
+                .focus(function() {
+                    $(this).parent().addClass('ui-state-active');
+                })
+                .blur(function() {
+                    $(this).parent().removeClass('ui-state-active');
+                });
+        });
+    </script>
 
 </head>
 <body>
@@ -84,9 +116,16 @@
         </div>
     </div>
     <script type="text/javascript">
+        var areas = $('.expandingArea'),
+            l = areas.length;
+
+        while (l--) {
+            makeExpandingArea(areas[l]);
+        }
+
         function makeExpandingArea(container) {
-            var area = container.querySelector('textarea');
-            var span = container.querySelector('span');
+            var area = container.querySelector('textarea'),
+                span = container.querySelector('span');
             if (area.addEventListener) {
                 area.addEventListener('input', function() {
                     span.textContent = area.value;
@@ -101,13 +140,6 @@
             }
             // Enable extra CSS
             container.className += ' active';
-        }
-
-        var areas = document.querySelectorAll('.expandingArea');
-        var l = areas.length;
-
-        while (l--) {
-            makeExpandingArea(areas[l]);
         }
     </script>
 </body>
