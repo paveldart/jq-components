@@ -226,7 +226,7 @@ $.prototype.$d = function(){
 //  attention! reusing var Property!
     upperProperty = html.className;
     if (upperProperty.indexOf('noJS') !== -1){
-        $(html).addClass(upperProperty.replace('noJS', ''));
+        html.className = upperProperty.replace('noJS', '');
     }
     htmlClass += $d.isCSSGradient && $d.isBoxShadow && $d.isBorderRadius ? ' isCSSModernBrowser' : 'isCSSNotModernBrowser';
 
