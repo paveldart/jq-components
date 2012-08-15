@@ -1,6 +1,7 @@
 html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a, span, small, img, blockquote, table, tr, th, td, input, textarea, select {
     padding: 0;
-    margin: 0
+    margin: 0;
+    outline: 0 none;
 }
 
 body {
@@ -65,6 +66,8 @@ a:active, .noFocus, .noFocus:focus {
 
 /*button - кнопочки */
 .button {
+    color: #000;
+    cursor: pointer;
     font-size: 14px;
     line-height: 18px;
     width: 190px;
@@ -104,7 +107,7 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #D6D6D6;
     }
 
-.confirm-button.ui-state-hover {
+.confirm-button.isHover {
     background: #f6f6f6;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eeeeee));
     background: -webkit-linear-gradient(top, #fff, #eeeeee);
@@ -118,14 +121,14 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #bebebe;
     }
 
-.confirm-button.ui-state-focus {
+.confirm-button.isFocused {
     -webkit-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
        -moz-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
          -o-box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
             box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px #00b1f5;
     }
 
-.confirm-button.ui-state-active {
+.confirm-button.isPressed {
     background: #e5e5e5;
     background: -webkit-gradient(linear, left top, left bottom, from(#dadada), to(#f1f1f1));
     background: -webkit-linear-gradient(top, #dadada, #f1f1f1);
@@ -155,7 +158,7 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 0 0 0 inset, 0 0 0 1px #0092c9;
     }
 
-.default-button.ui-state-hover {
+.default-button.isHover {
     background: #00a5e9;
     background: -webkit-gradient(linear, left top, left bottom, from(#00b7fb), to(#0095da));
     background: -webkit-linear-gradient(top, #00b7fb, #0095da);
@@ -169,14 +172,14 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 0 0 1px #33a9e1 inset, 0 0 0 1px #0087c5;
     }
 
-.default-button.ui-state-focus {
+.default-button.isFocused {
     -webkit-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
        -moz-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
          -o-box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
             box-shadow: 0 0 0 1px #b3e6fa inset, 0 0 0 1px #0087c5;
     }
 
-.default-button.ui-state-active {
+.default-button.isPressed {
     background: #009be2;
     background: -webkit-gradient(linear, left top, left bottom, from(#007ab7), to(#00a8f2));
     background: -webkit-linear-gradient(top, #007ab7, #00a8f2);
@@ -206,7 +209,7 @@ a:active, .noFocus, .noFocus:focus {
     box-shadow: 0 -1px 0 0 #f63d3b inset, 0 0 0 1px #d60000;
     }
 
-.cancel-button.ui-state-hover {
+.cancel-button.isHover {
     background: #f53836;
     background: -webkit-gradient(linear, left top, left bottom, from(#ff3d39), to(#f21e1e));
     background: -webkit-linear-gradient(top, #ff3d39, #f21e1e);
@@ -220,7 +223,7 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 0 0 1px #ff7673 inset, 0 0 0 1px #c10000;
     }
 
-.cancel-button.ui-state-focus {
+.cancel-button.isFocused {
     background: #f53635;
     background: -webkit-gradient(linear, left top, left bottom, from(#f85a56), to(#f53433));
     background: -webkit-linear-gradient(top, #f85a56, #f53433);
@@ -234,7 +237,7 @@ a:active, .noFocus, .noFocus:focus {
             box-shadow: 0 0 0 1px #fcc5c5 inset, 0 0 0 1px #d60000;
     }
 
-.cancel-button.ui-state-active {
+.cancel-button.isPressed {
     background: #d50705;
     background: -webkit-gradient(linear, left top, left bottom, from(#c30703), to(#ea0707));
     background: -webkit-linear-gradient(top, #c30703, #ea0707);

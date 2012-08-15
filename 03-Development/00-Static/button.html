@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Test Button</title>
 
     <link href="styles/main.css" rel="stylesheet" type="text/css">
@@ -22,32 +24,43 @@
     </style>
 
     <script src="scripts/jquery1.8.js" type="text/javascript"></script>
-    <script src="scripts/jquery-1.8.22.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.core.plugins.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.button.js" type="text/javascript"></script>
 
     <script>
         $(function() {
             $('.button').button();
-            $('a').click(function(){return false;}); //отменяет нажатие по якорю
-
         });
     </script>
 
 </head>
 <body>
     <h3>Button</h3>
-    <button class="button confirm-button">Confirm Button</button>
-    <button class="button default-button">Default Button</button>
-    <button class="button cancel-button">Cancel Button</button>
+    <button class="button confirm-button">
+        <span>Confirm Button</span>
+    </button>
+    <button class="button default-button">
+        <span>Default Button</span>
+    </button>
+    <button class="button cancel-button">
+        <span>Cancel Button</span>
+    </button>
 
 
     <h3>&lt;a&gt;</h3>
-    <a class="button confirm-button">Confirm Button</a>
-    <a class="button default-button">Default Button</a>
-    <a class="button cancel-button">Cancel Button</a>
+    <a href="http://google.com/" class="button confirm-button">
+        <span>Confirm Button</span>
+    </a>
+    <a class="button default-button">
+        <span>Default Button</span>
+    </a>
+    <a class="button cancel-button">
+        <span>Cancel Button</span>
+    </a>
 
-    <h3>Input:submit</h3>
+    <!--<h3>Input:submit</h3>
     <input type="submit" class="button confirm-button" value="Confirm Button">
     <input type="submit" class="button default-button" value="Default Button">
-    <input type="submit" class="button cancel-button" value="Cancel Button">
+    <input type="submit" class="button cancel-button" value="Cancel Button">-->
 </body>
 </html>
