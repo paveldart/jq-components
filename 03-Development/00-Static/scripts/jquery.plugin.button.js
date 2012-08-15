@@ -65,7 +65,7 @@
 
             $this
 //                touch
-                .bind('touchstart', function(e) {
+                .on('touchstart', function(e) {
                     e.preventDefault();
                     isPressed = true;
                     if (!isFocused) {
@@ -73,21 +73,21 @@
                     }
                     $this.addClass('isPressed');
                 })
-                .bind('touchend', function(){
+                .on('touchend', function(){
                     $this.removeClass('isPressed');
                     isPressed = false;
                 })
 //                hover
-                .bind('mouseenter', function() {
+                .on('mouseenter', function() {
                     isHover = true;
                     $this.addClass('isHover');
                 })
-                .bind('mouseleave', function() {
+                .on('mouseleave', function() {
                     isHover = false;
                     $this.removeClass('isHover');
                 })
 //                pressed
-                .bind('mousedown', function(e) {
+                .on('mousedown', function(e) {
                     e.preventDefault();
                     isPressed = true;
                     $this.addClass('isPressed');
@@ -95,26 +95,26 @@
                         $this.removeClass('isPressed');
                     });
                 })
-                .bind('mouseup', function() {
+                .on('mouseup', function() {
                     $this.removeClass('isPressed');
                     isPressed = false;
                 })
 //                focus
-                .bind('focus', function () {
+                .on('focus', function () {
                     isFocused = true;
                     $this.addClass('isFocused');
                 })
-                .bind('blur', blur);
+                .on('blur', blur);
 //                keypress/keyup
             if ($d.isOpera){
-                $this.bind('keypress', operaKeyPress);
+                $this.on('keypress', operaKeyPress);
             }
             else if ($d.isFx){
-                $this.bind('keypress', fxKeyPress);
+                $this.on('keypress', fxKeyPress);
             } else{
-                $this.bind('keydown', commonKeyDown);
+                $this.on('keydown', commonKeyDown);
             }
-            $this.bind('keyup', keyUp);
+            $this.on('keyup', keyUp);
 
         });
     };
