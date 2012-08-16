@@ -1,4 +1,4 @@
-html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a, span, small, img, blockquote, table, tr, th, td, input, textarea, select {
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, p, a, span, small, img, blockquote, table, tr, th, td, input, textarea, select, pre {
     padding: 0;
     margin: 0;
     outline: 0 none;
@@ -21,6 +21,14 @@ input, textarea {
     font-family: Helvetica, Arial, sans-serif;
     color: #000
 }
+
+textarea,
+pre {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    }
 
 a img {
     border: none
@@ -63,17 +71,26 @@ a:active, .noFocus, .noFocus:focus {
     white-space: nowrap
 }
 
+h3 {
+    color: #999999;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+    padding: 5px 0;
+    }
+
 
 /*button - кнопочки */
-.button {
+.jsButton {
     color: #000;
     cursor: pointer;
     font-size: 14px;
     line-height: 18px;
-    width: 190px;
+    width: 150px;
     text-align: center;
     overflow: hidden;
-    padding: 15px 0;
+    padding: 10px 0;
     text-decoration: none;
     display: inline-block;
     border: 0;
@@ -83,7 +100,7 @@ a:active, .noFocus, .noFocus:focus {
             border-radius: 4px;
     }
 
-.button span {
+.jsButton span {
     text-decoration: none;
     }
 
@@ -291,3 +308,109 @@ a:active, .noFocus, .noFocus:focus {
     color: #606060;
     }
 
+
+/* input[type='text'] etc*/
+.jsVisualInput {
+    background: none repeat scroll 0 0 #F5F5F5;
+    box-shadow: 0 0 0 1px #ddd inset;
+    border-radius: 7px 7px 7px 7px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    }
+
+.jsRealInput {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    font-size: 16px;
+    height: 20px;
+    margin: -6px;
+    padding: 6px;
+    width: 100%;
+    }
+
+.jsVisualInput.isHover {
+    box-shadow: 0 0 0 1px #BEBEBE inset;
+    }
+
+.jsVisualInput.isFocused {
+    box-shadow: 0 1px 4px 0 #BEBEBE inset;
+    }
+
+.placeholder {
+    color: #CCCCCC;
+    font-size: 16px;
+    left: 6px;
+    position: absolute;
+    top: 12px;
+    }
+.placeholder.noVisible {
+    display: none;
+    }
+
+
+
+/*textarea */
+.jsTextarea {
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 0 1px #E0E2E8;
+    margin: 0 0 20px;
+    overflow: hidden;
+    position: relative;
+    }
+
+.jsTextarea > textarea,
+.jsTextarea > pre {
+    color: #5B5F64;
+    padding: 15px;
+    background: transparent;
+    font: 400 13px/16px helvetica, arial, sans-serif;
+    /* Make the text soft-wrap */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    outline: none;
+    -moz-appearance: none;
+    }
+
+.jsTextarea > textarea {
+    /* The border-box box model is used to allow
+    * padding whilst still keeping the overall width
+    * at exactly that of the containing element.
+    */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    /* This height is used when JS is disabled */
+    height: 100px;
+    }
+
+.jsTextarea.active > textarea {
+    /* Hide any scrollbars */
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* Remove WebKit user-resize widget */
+    resize: none;
+    }
+
+.jsTextarea > pre {
+    display: none;
+    }
+.jsTextarea.active > pre {
+    display: block;
+    /* Hide the text; just using it for sizing */
+    visibility: hidden;
+    }
+
+
+.jsTextarea.isHover {
+    box-shadow: 0 0 0 1px #BEBEBE inset;
+    }
+
+.jsTextarea.isFocused {
+    box-shadow: 0 1px 4px 0 #BEBEBE inset;
+    }
