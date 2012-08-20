@@ -82,7 +82,7 @@ h3 {
 
 
 /*button - кнопочки */
-.jsButton {
+.jsVisualButton {
     color: #000;
     cursor: pointer;
     font-size: 14px;
@@ -100,12 +100,18 @@ h3 {
             border-radius: 4px;
     }
 
-.jsButton span {
+.jsVisualButton input.jsRealButton {
+    margin-right: 5px;
+    position: absolute;
+    right: 100%;
+    }
+
+.jsVisualButton a {
     text-decoration: none;
     }
 
-.cancel-button span,
-.default-button span {
+.cancel-button a,
+.default-button a {
     color: #ffffff;
     font-weight: bold;
     }
@@ -269,7 +275,7 @@ h3 {
     }
 
 
-/*checkbox */
+/*checkbox
 .ui-helper-hidden {
     display: none;
     }
@@ -306,7 +312,7 @@ h3 {
     }
 .label-checkbox.ui-state-active span {
     color: #606060;
-    }
+    }*/
 
 
 /* input[type='text'] etc*/

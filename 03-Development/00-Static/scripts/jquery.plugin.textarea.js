@@ -8,8 +8,8 @@
                 isPressed = false,
                 isFocused = false,
                 isHover = false,
-                area = $this.context.querySelector('textarea'),
-                span = $this.context.querySelector('span');
+                area = $this.children('textarea')[0],
+                span = $this.find('span')[0];
 
             if (area.addEventListener) {
                 area.addEventListener('input', function() {
@@ -23,27 +23,29 @@
                 });
                 span.innerText = area.value;
             }
-            $this.context.className += ' active';
+            $this[0].className += ' active';
 
-            $this
-                .on('mouseenter', function() {
+            $this.on({
+                mouseenter: function() {
                     isHover = true;
                     $this.addClass('isHover');
-                })
-                .on('mouseleave', function() {
+                },
+                mouseleave: function() {
                     isHover = false;
                     $this.removeClass('isHover');
-                });
+                }
+            });
 
-            $this.children('textarea')
-                .on('focus', function () {
+            $this.children('textarea').on({
+                focus: function () {
                     isFocused = true;
                     $this.addClass('isFocused');
-                })
-                .on('blur', function () {
+                },
+                blur: function () {
                     isFocused = false;
                     $this.removeClass('isFocused').removeClass('isPressed');
-                });
+                }
+            });
         });
     };
 })(jQuery);

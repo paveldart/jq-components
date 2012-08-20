@@ -4,36 +4,49 @@
     var $d = $().$d;
 
     $.fn.button = function() {
-        var isPressed = false,
-            isFocused = false,
-            isHover = false,
-            isDisabledCache = false,
-            isKeyDown = false;
 
-        return this.each(function (isPressed, isFocused, isHover, isKeyDown) {
-            var $this = $(this);
+        return this.each(function () {
+            var $this = $(this),
+                wrapper = $this.parent(),
+                object = $this[0],
+                form,
+                isPressed = false,
+                isFocused = false,
+                isHover = false,
+                isDisabledCache = false,
+                isKeyDown = false;
+
+            if ((object.tagName == 'A') && (object.href.length > 0)){
+                if (object.target != '') {
+                    wrapper.on('click', function(){
+                        window.open(object.href, object.target);
+                    });
+                }
+                else if (object.target === '') {
+                    wrapper.on('click', function(){
+                        window.location.href = object.href;
+                    });
+                }
+            } else if((object.tagName == 'INPUT') && (object.type == 'submit')){
+                form = $this.closest('form')[0];
+                if (form !== undefined) {
+                    wrapper.on('click', function(){
+                        form.submit();
+                    });
+                }
+            }
 
             function blur(){
-                $this.removeClass('isFocused').removeClass('isPressed');
+                wrapper.removeClass('isFocused').removeClass('isPressed');
                 isPressed = isKeyDown = isFocused = false;
             }
 
-//            todo не использован disable
-            function disabled(isDisabled){
-                isDisabledCache = isDisabled;
-                if (isDisabled){
-                    blur();
-                    $this.addClass('isDisabled');
-                } else{
-                    $this.removeClass('isDisabled');
-                }
-            }
             function keyDown(e, code){
                 if (!isDisabledCache && ((code == 13) || (code == 32))){
                     e.preventDefault();
                     e.stopPropagation();
                     isKeyDown = true;
-                    $this.addClass('isPressed');
+                    wrapper.addClass('isPressed');
                 }
             }
 
@@ -55,67 +68,77 @@
                     e.stopPropagation();
                     isKeyDown = false;
                     if (!isDisabledCache && !isPressed){
-                        $this.removeClass('isPressed');
+                        wrapper.removeClass('isPressed');
                     } else if (!isDisabledCache && !isHover){
-                        $this.removeClass('isPressed');
+                        wrapper.removeClass('isPressed');
                     }
                 }
             }
 
 
-            $this
+            wrapper.on({
 //                touch
-                .on('touchstart', function(e) {
+                touchstart: function(e) {
                     e.preventDefault();
                     isPressed = true;
                     if (!isFocused) {
-                        $this.focus();
+                        wrapper.focus();
                     }
-                    $this.addClass('isPressed');
-                })
-                .on('touchend', function(){
-                    $this.removeClass('isPressed');
+                    wrapper.addClass('isPressed');
+                },
+                touchend: function(){
+                    wrapper.removeClass('isPressed');
                     isPressed = false;
-                })
+                },
 //                hover
-                .on('mouseenter', function() {
+                mouseenter: function() {
                     isHover = true;
-                    $this.addClass('isHover');
-                })
-                .on('mouseleave', function() {
+                    wrapper.addClass('isHover');
+                },
+                mouseleave: function() {
                     isHover = false;
-                    $this.removeClass('isHover');
-                })
+                    wrapper.removeClass('isHover');
+                },
 //                pressed
-                .on('mousedown', function(e) {
+                mousedown: function(e) {
                     e.preventDefault();
                     isPressed = true;
-                    $this.addClass('isPressed');
-                    $this.mouseleave(function() {
-                        $this.removeClass('isPressed');
+                    wrapper.addClass('isPressed');
+                    wrapper.mouseleave(function() {
+                        wrapper.removeClass('isPressed');
                     });
-                })
-                .on('mouseup', function() {
-                    $this.removeClass('isPressed');
+                },
+                mouseup: function() {
+                    wrapper.removeClass('isPressed');
                     isPressed = false;
-                })
+                },
 //                focus
-                .on('focus', function () {
+                focus: function () {
                     isFocused = true;
-                    $this.addClass('isFocused');
-                })
-                .on('blur', blur);
+                    wrapper.addClass('isFocused');
+                },
+                blur: function () {
+                    isFocused = true;
+                    wrapper.addClass('isFocused');
+                }
+            });
+            $this.on({
+                focus: function () {
+                    isFocused = true;
+                    wrapper.addClass('isFocused');
+                },
+                blur: blur
+            });
 //                keypress/keyup
             if ($d.isOpera){
-                $this.on('keypress', operaKeyPress);
+                wrapper.on('keypress', operaKeyPress);
             }
             else if ($d.isFx){
-                $this.on('keypress', fxKeyPress);
+                wrapper.on('keypress', fxKeyPress);
             } else{
-                $this.on('keydown', commonKeyDown);
+                wrapper.on('keydown', commonKeyDown);
             }
-            $this.on('keyup', keyUp);
-
+            wrapper.on('keyup', keyUp);
         });
     };
 })(jQuery);

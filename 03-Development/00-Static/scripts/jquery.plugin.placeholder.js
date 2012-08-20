@@ -3,33 +3,42 @@
         return this.each(function () {
             var $this = $(this),
                 wrapper = $this.parent(),
-                input = wrapper.children('input'),
-                textarea = wrapper.children('textarea');
+                input = wrapper.children('input')[0],
+                textarea = wrapper.children('textarea')[0],
+                children = input || textarea,
+                isVisible = false;
 
-            wrapper
-                .on('keydown', function() {
+            if (children !== undefined) {
+                if (children.value.length > 0) {
                     $this.addClass('noVisible');
-                })
-                .on('keyup', function() {
-                    if (((input[0] !== undefined) && (input[0].value.length === 0)) || ((textarea[0] !== undefined) && (textarea[0].value.length === 0))){
+                    isVisible = false;
+                } else if (children.value.length === 0) {
+                    $this.removeClass('noVisible');
+                    isVisible = true;
+                }
+            }
+
+            function hiddenPlaceholder(){
+                if(isVisible) {
+                    $this.addClass('noVisible');
+                    isVisible = false;
+                }
+            }
+
+            function visiblePlaceholder() {
+                if(!isVisible) {
+                    if ((children !== undefined) && (children.value.length === 0)){
                         $this.removeClass('noVisible');
+                        isVisible = true;
                     }
+                }
+            }
+
+            wrapper.on({
+                keydown: hiddenPlaceholder,
+                keyup: visiblePlaceholder
                 });
 
-            if (((input[0] !== undefined) && (input[0].value.length > 0)) || ((textarea[0] !== undefined) && (textarea[0].value.length > 0))) {
-                $this.addClass('noVisible');
-            } else if (((input[0] !== undefined) && (input[0].value.length === 0)) || ((textarea[0] !== undefined) && (textarea[0].value.length === 0))) {
-                $this.removeClass('noVisible');
-            }
         });
     };
-
-    function clearPlaceholder(obj) {
-        obj.addClass('noVisible');
-    }
-
-    function setPlaceholder(obj) {
-        obj.removeClass('noVisible');
-    }
-
 }(jQuery));

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>All JS-components</title>
+
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .conteiner {
+            width: 470px;
+            margin: 10px;
+            }
+    </style>
+
+    <script src="scripts/jquery1.8.js" type="text/javascript"></script>
+    <script src="scripts/jquery.core.plugins.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.button.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.input.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.textarea.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.placeholder.js" type="text/javascript"></script>
+
+    <script>
+        $(function() {
+            $('.jsTextarea').textarea();
+
+            $('.jsRealButton').button();
+
+            $('.addDisable').on({
+                click: function(){
+                    $('.jsRealInput').prop('disabled', true);
+                    $('.jsVisualInput').removeClass('isHover').removeClass('isFocused').addClass('isDisabled');
+                },
+                touchstart: function() {
+                    $('.jsRealInput').prop('disabled', true);
+                    $('.jsVisualInput').removeClass('isHover').removeClass('isFocused').addClass('isDisabled');
+                }
+            });
+
+            $('.removeDisable').on({
+                click: function(){
+                    $('.jsRealInput').prop('disabled', false);
+                    $('.jsVisualInput').removeClass('isDisabled');
+                },
+                touchstart: function(){
+                    $('.jsRealInput').prop('disabled', false);
+                    $('.jsVisualInput').removeClass('isDisabled');
+                }
+            });
+
+            //$('.jsRealButton').click(function() { return false; });
+
+            $('.jsRealInput').input();
+
+            $('.jsPlaceholder').placeholder();
+        });
+    </script>
+
+</head>
+<body>
+    <div class="conteiner">
+        <div class="jsVisualButton addDisable cancel-button">
+            <input class="jsRealButton" />
+            <span >Навесить disable на input'ы</span>
+        </div>
+        <div class="jsVisualButton removeDisable default-button">
+            <a class="jsRealButton"></a>
+            <span>Снять disable с input'ов</span>
+        </div>
+
+        <h3>Input[type="text"]</h3>
+        <div class="jsVisualInput jsTextInput">
+            <input type="text" class="jsRealInput">
+            <label class="jsPlaceholder">Введите текст</label>
+        </div>
+
+        <h3>Input[type="password"]</h3>
+        <div class="jsVisualInput">
+            <input type="password" class="jsRealInput">
+            <label class="jsPlaceholder">Введите пароль</label>
+        </div>
+
+        <h3>TextArea</h3>
+        <div class="jsTextarea">
+            <pre><span></span><br /></pre>
+            <textarea rows="4" cols="10">Watch me expand to encompass your every word! Blah-blah-blah-blah-blah blah-blah-blah</textarea>
+            <label class="jsPlaceholder">Введите много текста</label>
+        </div>
+
+        <div class="jsTextarea">
+            <pre><span></span><br /></pre>
+            <textarea rows="4" cols="10"></textarea>
+            <label class="jsPlaceholder">Введите много текста</label>
+        </div>
+
+        <h3>Кнопки-ссылки и кнопки в форме</h3>
+        <div class="jsVisualButton confirm-button">
+            <a href="http://google.ru/" class="jsRealButton"></a>
+            <span>Простая</span>
+        </div>
+        <div class="jsVisualButton confirm-button">
+            <a href="http://ya.ru/" target="_blank" class="jsRealButton"></a>
+            <span>С target="_blank"</span>
+        </div>
+
+        <form action="blahblah.php">
+            <div class="jsVisualButton default-button">
+                <input class="jsRealButton" type="submit" />
+                <span>В form'ы</span>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+
+
+    </script>
+</body>
+</html>

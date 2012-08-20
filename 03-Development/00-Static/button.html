@@ -20,43 +20,24 @@
 
     <script>
         $(function() {
-            $('.jsButton').button();
+            $('.jsRealButton').button();
         });
     </script>
 
 </head>
 <body>
-    <h3>Button</h3>
-    <button class="jsButton confirm-button">
-        <span>Confirm Button</span>
-    </button>
-    <button class="jsButton default-button">
-        <span>Default Button</span>
-    </button>
-    <button class="jsButton cancel-button">
-        <span>Cancel Button</span>
-    </button>
-
-
-    <h3>&lt;a&gt;</h3>
-    <a href="http://google.com/" class="jsButton confirm-button">
-        <span>Confirm Button</span>
-    </a>
-    <a class="jsButton default-button">
-        <span>Default Button</span>
-    </a>
-    <a class="jsButton cancel-button">
-        <span>Cancel Button</span>
-    </a>
-
-    <h3>Input[type="button"]</h3>
-    <input type="button" class="jsButton confirm-button" value="Confirm Button">
-    <input type="button" class="jsButton default-button" value="Default Button">
-    <input type="button" class="jsButton cancel-button" value="Cancel Button">
-
-    <h3>Input[type="submit"]</h3>
-    <input type="submit" class="jsButton confirm-button" value="Confirm Button">
-    <input type="submit" class="jsButton default-button" value="Default Button">
-    <input type="submit" class="jsButton cancel-button" value="Cancel Button">
+   <h3>jQuery</h3>
+   <div class="jsVisualButton confirm-button">
+       <input class="jsRealButton" />
+       <span >Confirm Button</span>
+   </div>
+   <div class="jsVisualButton default-button">
+       <input class="jsRealButton" />
+       <span>Default Button</span>
+   </div>
+   <div class="jsVisualButton cancel-button">
+       <a href="http://ya.ru/" target="blank" class="jsRealButton"></a>
+       <span>Cancel Button</span>
+   </div>
 </body>
 </html>
