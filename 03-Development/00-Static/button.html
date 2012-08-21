@@ -21,23 +21,21 @@
     <script>
         $(function() {
             $('.jsRealButton').button();
+
+            $('.disableButton').setDisable(true);
         });
     </script>
 
 </head>
 <body>
-   <h3>jQuery</h3>
-   <div class="jsVisualButton confirm-button">
-       <input class="jsRealButton" />
-       <span >Confirm Button</span>
-   </div>
+   <h3>Button</h3>
    <div class="jsVisualButton default-button">
-       <input class="jsRealButton" />
+       <a class="jsRealButton"></a>
        <span>Default Button</span>
    </div>
    <div class="jsVisualButton cancel-button">
-       <a href="http://ya.ru/" target="blank" class="jsRealButton"></a>
-       <span>Cancel Button</span>
+       <input type="button" class="jsRealButton disableButton" />
+       <span>Disable Button</span>
    </div>
 </body>
 </html>

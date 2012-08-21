@@ -26,9 +26,29 @@
         $(function() {
             $('.jsTextarea').textarea();
 
+            $('#textAreaResize').textarea({resize: true});
+
             $('.jsRealButton').button();
 
-            $('.addDisable').on({
+            $('#addDisableButton').parent().on({
+                click: function(){
+                    $('#disableButton').setDisable(true);
+                },
+                touchstart: function() {
+                    $('#disableButton').setDisable(true);
+                }
+            });
+
+            $('#removeDisableButton').parent().on({
+                click: function(){
+                    $('#disableButton').setDisable(false);
+                },
+                touchstart: function(){
+                    $('#disableButton').setDisable(false);
+                }
+            });
+
+            $('#addDisableInput').parent().on({
                 click: function(){
                     $('.jsRealInput').prop('disabled', true);
                     $('.jsVisualInput').removeClass('isHover').removeClass('isFocused').addClass('isDisabled');
@@ -39,7 +59,7 @@
                 }
             });
 
-            $('.removeDisable').on({
+            $('#removeDisableInput').parent().on({
                 click: function(){
                     $('.jsRealInput').prop('disabled', false);
                     $('.jsVisualInput').removeClass('isDisabled');
@@ -50,49 +70,61 @@
                 }
             });
 
-            //$('.jsRealButton').click(function() { return false; });
-
             $('.jsRealInput').input();
 
-            $('.jsPlaceholder').placeholder();
+            $('.jsTextarea, .jsRealInput').next('label').placeholder();
         });
     </script>
 
 </head>
 <body>
     <div class="conteiner">
-        <div class="jsVisualButton addDisable cancel-button">
-            <input class="jsRealButton" />
-            <span >Навесить disable на input'ы</span>
+        <h3>Disable кнопок</h3>
+        <div class="jsVisualButton cancel-button">
+            <input class="jsRealButton" id="addDisableButton" />
+            <span>Навесить disable</span>
         </div>
-        <div class="jsVisualButton removeDisable default-button">
-            <a class="jsRealButton"></a>
+        <div class="jsVisualButton default-button">
+            <input class="jsRealButton" id="removeDisableButton" />
+            <span>Снять disable</span>
+        </div>
+        <div class="jsVisualButton confirm-button">
+            <input type="button" class="jsRealButton" id="disableButton" />
+            <span>Кнопка</span>
+        </div>
+
+        <h3>Disable инпутов</h3>
+        <div class="jsVisualButton cancel-button">
+            <input class="jsRealButton" id="addDisableInput" />
+            <span>Навесить disable на input'ы</span>
+        </div>
+        <div class="jsVisualButton default-button">
+            <a type="button" class="jsRealButton" id="removeDisableInput"></a>
             <span>Снять disable с input'ов</span>
         </div>
 
         <h3>Input[type="text"]</h3>
-        <div class="jsVisualInput jsTextInput">
-            <input type="text" class="jsRealInput">
-            <label class="jsPlaceholder">Введите текст</label>
+        <div class="jsVisualInput text-input">
+            <input type="text" class="jsRealInput" id="textInput">
+            <label for="textInput" class="placeholder">Введите текст</label>
         </div>
 
         <h3>Input[type="password"]</h3>
-        <div class="jsVisualInput">
-            <input type="password" class="jsRealInput">
-            <label class="jsPlaceholder">Введите пароль</label>
+        <div class="jsVisualInput text-input">
+            <input type="password" class="jsRealInput" id="textPassword">
+            <label for="textPassword" class="placeholder">Введите пароль</label>
         </div>
 
-        <h3>TextArea</h3>
-        <div class="jsTextarea">
-            <pre><span></span><br /></pre>
-            <textarea rows="4" cols="10">Watch me expand to encompass your every word! Blah-blah-blah-blah-blah blah-blah-blah</textarea>
-            <label class="jsPlaceholder">Введите много текста</label>
+        <h3>Textarea</h3>
+        <div class="textarea">
+            <textarea class="jsTextarea" id="textArea" rows="4" cols="10">Watch me expand to encompass your every word!</textarea>
+            <label for="textArea" class="placeholder">Введите много текста</label>
         </div>
 
-        <div class="jsTextarea">
-            <pre><span></span><br /></pre>
-            <textarea rows="4" cols="10"></textarea>
-            <label class="jsPlaceholder">Введите много текста</label>
+        <h3>Textarea resize</h3>
+        <div class="textarea">
+            <textarea class="jsTextarea" id="textAreaResize" rows="4" cols="10">Watch me expand to encompass your every word!</textarea>
+            <label for="textAreaResize" class="placeholder">Введите много текста</label>
         </div>
 
         <h3>Кнопки-ссылки и кнопки в форме</h3>
@@ -106,9 +138,9 @@
         </div>
 
         <form action="blahblah.php">
-            <div class="jsVisualButton default-button">
+            <div class="jsVisualButton confirm-button">
                 <input class="jsRealButton" type="submit" />
-                <span>В form'ы</span>
+                <span>В form'е</span>
             </div>
         </form>
     </div>

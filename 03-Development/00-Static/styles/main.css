@@ -82,7 +82,9 @@ h3 {
 
 
 /*button - кнопочки */
-.jsVisualButton {
+.confirm-button,
+.cancel-button,
+.default-button {
     color: #000;
     cursor: pointer;
     font-size: 14px;
@@ -91,6 +93,7 @@ h3 {
     text-align: center;
     overflow: hidden;
     padding: 10px 0;
+    margin-bottom: 5px;
     text-decoration: none;
     display: inline-block;
     border: 0;
@@ -100,13 +103,17 @@ h3 {
             border-radius: 4px;
     }
 
-.jsVisualButton input.jsRealButton {
+.confirm-button input,
+.cancel-button input,
+.default-button input {
     margin-right: 5px;
     position: absolute;
     right: 100%;
     }
 
-.jsVisualButton a {
+.confirm-button a,
+.cancel-button a,
+.default-button a {
     text-decoration: none;
     }
 
@@ -274,6 +281,11 @@ h3 {
             box-shadow: 0 0 0 0 inset, 0 0 0 1px #c10000;
     }
 
+.isDisabled {
+    opacity: 0.5;
+    cursor: default;
+    }
+
 
 /*checkbox
 .ui-helper-hidden {
@@ -316,7 +328,7 @@ h3 {
 
 
 /* input[type='text'] etc*/
-.jsVisualInput {
+.text-input {
     background: none repeat scroll 0 0 #F5F5F5;
     box-shadow: 0 0 0 1px #ccc inset;
     border-radius: 7px 7px 7px 7px;
@@ -325,35 +337,35 @@ h3 {
     position: relative;
     }
 
-.jsRealInput {
+.text-input input {
     background: none repeat scroll 0 0 transparent;
     border: medium none;
     font-size: 16px;
     height: 20px;
-    margin: -6px;
-    padding: 6px;
+    margin: -10px;
+    padding: 10px;
     width: 100%;
     position: relative;
     z-index: 10;
     }
 
-.jsVisualInput.isHover {
+.text-input.isHover {
     box-shadow: 0 0 0 1px #aaa inset;
     }
 
-.jsVisualInput.isFocused {
+.text-input.isFocused {
     box-shadow: 0 1px 4px 0 #BEBEBE inset;
     }
 
-.jsVisualInput.isDisabled {
+.text-input.isDisabled {
     box-shadow: 0 0 0 1px #eee inset;
     }
 
-.jsVisualInput.isDisabled input {
+.text-input.isDisabled input {
     color: #999;
     }
 
-.jsPlaceholder {
+.placeholder {
     color: #CCCCCC;
     font-size: 16px;
     left: 12px;
@@ -361,24 +373,23 @@ h3 {
     top: 12px;
     z-index: 9;
     }
-.jsPlaceholder.noVisible {
+.placeholder.noVisible {
     display: none;
     }
 
 
 
 /*textarea */
-.jsTextarea {
+.textarea {
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 0 0 1px #E0E2E8;
     margin: 0 0 20px;
     overflow: hidden;
     position: relative;
-    min-height: 100px;
     }
 
-.jsTextarea textarea,
-.jsTextarea pre {
+.textarea textarea,
+.textarea pre {
     color: #5B5F64;
     padding: 11px;
     background: transparent;
@@ -391,16 +402,18 @@ h3 {
     z-index: 10;
     }
 
-.jsTextarea textarea {
+.textarea textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     height: 100px;
     }
 
-.jsTextarea.active textarea {
+.textarea.jsTextareaResize textarea {
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -409,19 +422,19 @@ h3 {
     resize: none;
     }
 
-.jsTextarea pre {
+.textarea pre {
     display: none;
     }
-.jsTextarea.active pre {
+.textarea.jsTextareaResize pre {
     display: block;
     visibility: hidden;
     }
 
 
-.jsTextarea.isHover {
+.textarea.isHover {
     box-shadow: 0 0 0 1px #BEBEBE inset;
     }
 
-.jsTextarea.isFocused {
+.textarea.isFocused {
     box-shadow: 0 1px 4px 0 #BEBEBE inset;
     }

@@ -1,5 +1,7 @@
-//jQ button plugin
-
+/**
+ * jQ button plugin
+ *
+ */
 (function($){
     var $d = $().$d;
 
@@ -10,11 +12,21 @@
                 wrapper = $this.parent(),
                 object = $this[0],
                 form,
+                code,
                 isPressed = false,
                 isFocused = false,
                 isHover = false,
+                isDisabled = false,
                 isDisabledCache = false,
                 isKeyDown = false;
+
+            if ($this[0].disabled) {
+                wrapper.addClass('isDisabled');
+            } else {
+                wrapper.removeClass('isDisabled');
+            }
+
+            isDisabled = $this[0].disabled;
 
             if ((object.tagName == 'A') && (object.href.length > 0)){
                 if (object.target != '') {
@@ -79,53 +91,67 @@
             wrapper.on({
 //                touch
                 touchstart: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    if (!isFocused) {
-                        wrapper.focus();
+                    // todo убрать проверку
+                    if (!$this[0].disabled) {
+                        e.preventDefault();
+                        isPressed = true;
+                        if (!isFocused) {
+                            wrapper.focus();
+                        }
+                        wrapper.addClass('isPressed');
                     }
-                    wrapper.addClass('isPressed');
                 },
                 touchend: function(){
-                    wrapper.removeClass('isPressed');
-                    isPressed = false;
+                    if (!$this[0].disabled) {
+                        wrapper.removeClass('isPressed');
+                        isPressed = false;
+                    }
                 },
 //                hover
                 mouseenter: function() {
-                    isHover = true;
-                    wrapper.addClass('isHover');
+                    if (!$this[0].disabled) {
+                        isHover = true;
+                        wrapper.addClass('isHover');
+                    }
                 },
                 mouseleave: function() {
-                    isHover = false;
-                    wrapper.removeClass('isHover');
+                    if (!$this[0].disabled) {
+                        isHover = false;
+                        wrapper.removeClass('isHover');
+                    }
                 },
 //                pressed
                 mousedown: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    wrapper.addClass('isPressed');
-                    wrapper.mouseleave(function() {
-                        wrapper.removeClass('isPressed');
-                    });
+                    if (!$this[0].disabled) {
+                        e.preventDefault();
+                        isPressed = true;
+                        wrapper.addClass('isPressed');
+                        wrapper.mouseleave(function() {
+                            wrapper.removeClass('isPressed');
+                        });
+                    }
                 },
                 mouseup: function() {
-                    wrapper.removeClass('isPressed');
-                    isPressed = false;
+                    if (!$this[0].disabled) {
+                        wrapper.removeClass('isPressed');
+                        isPressed = false;
+                    }
                 },
 //                focus
                 focus: function () {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
+                    if (!$this[0].disabled) {
+                        isFocused = true;
+                        wrapper.addClass('isFocused');
+                    }
                 },
-                blur: function () {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
-                }
+                blur: blur
             });
             $this.on({
                 focus: function () {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
+                    if (!$this[0].disabled) {
+                        isFocused = true;
+                        wrapper.addClass('isFocused');
+                    }
                 },
                 blur: blur
             });
@@ -139,6 +165,28 @@
                 wrapper.on('keydown', commonKeyDown);
             }
             wrapper.on('keyup', keyUp);
+
+        });
+    };
+
+    $.fn.setDisable = function(params){
+        var isDisabled;
+
+
+        return this.each(function () {
+            var $this = $(this),
+                wrapper = $this.parent();
+
+            if(params) {
+                $this.prop('disabled', true);
+                wrapper.addClass('isDisabled');
+                isDisabled = true;
+
+            } else {
+                $this.prop('disabled', false);
+                wrapper.removeClass('isDisabled');
+                isDisabled = false;
+            }
         });
     };
 })(jQuery);

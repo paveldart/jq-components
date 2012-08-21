@@ -1,49 +1,76 @@
-//jQ textarea plugin
-
+/**
+ * jQ textarea plugin
+ * $(id).textarea(params);
+ * resize params:
+ * params = {
+ *     resize: true
+ * }
+ */
 (function($){
-    $.fn.textarea = function() {
+    var params;
+
+    $.fn.textarea = function(params) {
+        var isResize,
+//            настройки по умолчанию
+            settings = {
+                resize: false
+            };
 
         return this.each(function () {
             var $this = $(this),
+                wrapper = $this.parent(),
                 isPressed = false,
                 isFocused = false,
                 isHover = false,
-                area = $this.children('textarea')[0],
-                span = $this.find('span')[0];
+                area,
+                span;
 
-            if (area.addEventListener) {
-                area.addEventListener('input', function() {
-                    span.textContent = area.value;
-                }, false);
-                span.textContent = area.value;
-            } else if (area.attachEvent) {
-                // IE8 compatibility
-                area.attachEvent('onpropertychange', function() {
-                    span.innerText = area.value;
-                });
-                span.innerText = area.value;
+            if (params) {
+                $.extend(settings, params);
             }
-            $this[0].className += ' active';
 
-            $this.on({
+            isResize = settings.resize;
+
+            if(isResize) {
+                wrapper.append('<pre><span></span><br /></pre>');
+
+                area = wrapper.children('textarea')[0];
+                span = wrapper.find('span')[0];
+
+                if (area.addEventListener) {
+                    area.addEventListener('input', function() {
+                        span.textContent = area.value;
+                    }, false);
+                    span.textContent = area.value;
+                } else if (area.attachEvent) {
+                    // IE8 compatibility
+                    area.attachEvent('onpropertychange', function() {
+                        span.innerText = area.value;
+                    });
+                    span.innerText = area.value;
+                }
+                wrapper[0].className += ' jsTextareaResize';
+            }
+
+            wrapper.on({
                 mouseenter: function() {
                     isHover = true;
-                    $this.addClass('isHover');
+                    wrapper.addClass('isHover');
                 },
                 mouseleave: function() {
                     isHover = false;
-                    $this.removeClass('isHover');
+                    wrapper.removeClass('isHover');
                 }
             });
 
-            $this.children('textarea').on({
+            wrapper.children('textarea').on({
                 focus: function () {
                     isFocused = true;
-                    $this.addClass('isFocused');
+                    wrapper.addClass('isFocused');
                 },
                 blur: function () {
                     isFocused = false;
-                    $this.removeClass('isFocused').removeClass('isPressed');
+                    wrapper.removeClass('isFocused').removeClass('isPressed');
                 }
             });
         });
