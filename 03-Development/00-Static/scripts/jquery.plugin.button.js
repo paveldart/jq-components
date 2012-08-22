@@ -17,7 +17,6 @@
                 isFocused = false,
                 isHover = false,
                 isDisabled = false,
-                isDisabledCache = false,
                 isKeyDown = false;
 
             if ($this[0].disabled) {
@@ -26,7 +25,7 @@
                 wrapper.removeClass('isDisabled');
             }
 
-            isDisabled = $this[0].disabled;
+            isDisabled = object.disabled;
 
             if ((object.tagName == 'A') && (object.href.length > 0)){
                 if (object.target != '') {
@@ -36,6 +35,7 @@
                 }
                 else if (object.target === '') {
                     wrapper.on('click', function(){
+                        console.log(object.getAttribute('data-disable'));
                         window.location.href = object.href;
                     });
                 }
@@ -48,13 +48,8 @@
                 }
             }
 
-            function blur(){
-                wrapper.removeClass('isFocused').removeClass('isPressed');
-                isPressed = isKeyDown = isFocused = false;
-            }
-
             function keyDown(e, code){
-                if (!isDisabledCache && ((code == 13) || (code == 32))){
+                if ((code == 13) || (code == 32)){
                     e.preventDefault();
                     e.stopPropagation();
                     isKeyDown = true;
@@ -70,7 +65,10 @@
             }
             function commonKeyDown(e){
                 if ((e.keyCode == 9) && ($d.isIE && ($d.browserVersion < 9))){
-                    blur();
+                    if (!object.disabled) {
+                        wrapper.removeClass('isFocused').removeClass('isPressed');
+                        isFocused = false;
+                    }
                 }
                 keyDown(e, e.keyCode);
             }
@@ -79,20 +77,19 @@
                     e.preventDefault();
                     e.stopPropagation();
                     isKeyDown = false;
-                    if (!isDisabledCache && !isPressed){
+                    if (!isPressed){
                         wrapper.removeClass('isPressed');
-                    } else if (!isDisabledCache && !isHover){
+                    } else if (!isHover){
                         wrapper.removeClass('isPressed');
                     }
                 }
             }
 
-
             wrapper.on({
 //                touch
                 touchstart: function(e) {
                     // todo убрать проверку
-                    if (!$this[0].disabled) {
+                    if ((!object.disabled) && (!object.getAttribute('data-disable'))){
                         e.preventDefault();
                         isPressed = true;
                         if (!isFocused) {
@@ -102,27 +99,23 @@
                     }
                 },
                 touchend: function(){
-                    if (!$this[0].disabled) {
-                        wrapper.removeClass('isPressed');
-                        isPressed = false;
-                    }
+                    wrapper.removeClass('isPressed');
+                    isPressed = false;
                 },
 //                hover
                 mouseenter: function() {
-                    if (!$this[0].disabled) {
+                    if ((!object.disabled) && (!object.getAttribute('data-disable'))) {
                         isHover = true;
                         wrapper.addClass('isHover');
                     }
                 },
                 mouseleave: function() {
-                    if (!$this[0].disabled) {
-                        isHover = false;
-                        wrapper.removeClass('isHover');
-                    }
+                    isHover = false;
+                    wrapper.removeClass('isHover');
                 },
 //                pressed
                 mousedown: function(e) {
-                    if (!$this[0].disabled) {
+                    if ((!object.disabled) && (!object.getAttribute('data-disable'))){
                         e.preventDefault();
                         isPressed = true;
                         wrapper.addClass('isPressed');
@@ -132,28 +125,32 @@
                     }
                 },
                 mouseup: function() {
-                    if (!$this[0].disabled) {
-                        wrapper.removeClass('isPressed');
-                        isPressed = false;
-                    }
+                    wrapper.removeClass('isPressed');
+                    isPressed = false;
                 },
 //                focus
-                focus: function () {
-                    if (!$this[0].disabled) {
+                focus: function() {
+                    if ((!object.disabled) && (!object.getAttribute('data-disable')) && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
                 },
-                blur: blur
+                blur: function(){
+                    wrapper.removeClass('isFocused').removeClass('isPressed');
+                    isFocused = false;
+                }
             });
             $this.on({
-                focus: function () {
-                    if (!$this[0].disabled) {
+                focus: function() {
+                    if ((!object.disabled) && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
                 },
-                blur: blur
+                blur: function(){
+                    wrapper.removeClass('isFocused').removeClass('isPressed');
+                    isFocused = false;
+                }
             });
 //                keypress/keyup
             if ($d.isOpera){
@@ -178,15 +175,24 @@
                 wrapper = $this.parent();
 
             if(params) {
-                $this.prop('disabled', true);
+                if ($this[0].tagName == 'A') {
+                    $this.attr('data-disable', 'true');
+                } else {
+                    $this.prop('disabled', true);
+                }
                 wrapper.addClass('isDisabled');
                 isDisabled = true;
-
             } else {
-                $this.prop('disabled', false);
+                if ($this[0].tagName == 'A') {
+                    $this[0].removeAttribute('data-disable');
+                } else {
+                    $this.prop('disabled', false);
+                }
                 wrapper.removeClass('isDisabled');
                 isDisabled = false;
             }
+
+
         });
     };
 })(jQuery);

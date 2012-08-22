@@ -13,18 +13,30 @@
     </style>
 
     <script src="scripts/jquery1.8.js" type="text/javascript"></script>
-    <script src="scripts/jquery-1.8.22.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.checkbox.js" type="text/javascript"></script>
 
     <script>
         $(function() {
-            $(".checkbox").button();
+            $(".jsRealCheckbox")._checkbox();
         });
     </script>
 
 </head>
 <body>
-    <!--<input type="checkbox" class="checkbox" id="check1" /><label class="label-checkbox" for="check1"><i></i>Вход в интернет-банк</label>
-    <input type="checkbox" class="checkbox" id="check2" /><label class="label-checkbox" for="check2"><i></i>Неправильный ввод пароля</label>
-    <input type="checkbox" class="checkbox" id="check3" /><label class="label-checkbox" for="check3"><i></i>Блокировка учетной записи</label>-->
+    <div class="jsVisualCheckbox checkbox">
+        <input type="checkbox" class="jsRealCheckbox" id="check1" />
+        <i></i>
+        <label class="label-checkbox" for="check1">Вход в интернет-банк</label>
+    </div>
+    <div class="jsVisualCheckbox checkbox">
+        <input type="checkbox" class="jsRealCheckbox" id="check2" />
+        <i></i>
+        <label class="label-checkbox" for="check2">Неправильный ввод пароля</label>
+    </div>
+    <div class="jsVisualCheckbox checkbox">
+        <input type="checkbox" class="jsRealCheckbox" id="check3" />
+        <i></i>
+        <label class="label-checkbox" for="check3">Блокировка учетной записи</label>
+    </div>
 </body>
 </html>

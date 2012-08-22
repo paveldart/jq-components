@@ -23,31 +23,50 @@
     <script>
         $(function() {
             $('.jsRealInput').input();
-            $('.jsTextarea').textarea();
-            $('.jsPlaceholder').placeholder();
-        });
 
+            $('.jsTextarea').textarea({resize: true});
+
+            $('.jsTextarea, .jsRealInput').next('label').placeholder();
+
+            $('.jsAnimateLabel').next('label').placeholder({focus: true});
+
+            $('.jsAnimateLabel').on({
+                    focus: function(){
+                        $(this).next('label').addClass('isReduced');
+                    },
+                    blur: function(){
+                        if ($(this)[0].value.length === 0) {
+                            $(this).next('label').removeClass('isReduced');
+                        }
+                    }
+                });
+        });
     </script>
 
 </head>
 <body>
-    <div class="conteiner">
-        <h3>Textarea</h3>
-        <div class="jsTextarea">
-            <pre><span></span><br /></pre>
-            <textarea rows="4" cols="10"></textarea>
-            <label class="jsPlaceholder">Введите текст</label>
-        </div>
-
-        <h3>Input[type="password"]</h3>
-        <div class="jsVisualInput">
-            <input type="text" class="jsRealInput">
-            <label class="jsPlaceholder">Введите текст</label>
-        </div>
+<div class="conteiner">
+    <h3>Textarea</h3>
+    <div class="textarea">
+        <textarea class="jsTextarea"></textarea>
+        <label class="placeholder">Введите много текста</label>
     </div>
-    <script type="text/javascript">
 
+    <h3>Input[type="password"]</h3>
+    <div class="jsVisualInput text-input">
+        <input type="password" class="jsRealInput">
+        <label class="placeholder">Введите пароль</label>
+    </div>
 
-    </script>
+    <h3>Animate</h3>
+    <div class="jsVisualInput input-single">
+        <input type="text" class="jsRealInput jsAnimateLabel">
+        <label class="placeholder">Логин</label>
+    </div>
+    <div class="jsVisualInput input-single">
+        <input type="password" class="jsRealInput jsAnimateLabel">
+        <label class="placeholder">Пароль</label>
+    </div>
+</div>
 </body>
 </html>

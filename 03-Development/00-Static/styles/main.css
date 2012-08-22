@@ -287,23 +287,25 @@ h3 {
     }
 
 
-/*checkbox
-.ui-helper-hidden {
-    display: none;
+/*checkbox */
+.checkbox {
+    width: -moz-max-content;
+    cursor: pointer;
     }
-.ui-helper-hidden-accessible {
+
+.checkbox input {
     clip: rect(1px, 1px, 1px, 1px);
     position: absolute;
     }
-.label-checkbox {
-    display: block;
+
+.checkbox label {
+    display: inline-block;
     cursor: pointer;
     line-height: 22px;
-    }
-.label-checkbox span {
     color: #20B0E6;
     }
-.label-checkbox i {
+
+.checkbox i {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #C6C6C6;
     border-radius: 3px 3px 3px 3px;
@@ -315,16 +317,12 @@ h3 {
     vertical-align: top;
     }
 
-.label-checkbox.ui-state-hover i {
-    border-color: #ddd;
+.checkbox.isActive i {
+    background: url("http://www.showroom.softwearfinance.com/single/bank/images/ui.png") no-repeat scroll -141px -35px transparent;
     }
-
-.label-checkbox.ui-state-active i {
-    background: url("http://www.showroom.softwearfinance.com/single/bank/images/ui.png") no-repeat scroll -141px -37px transparent;
-    }
-.label-checkbox.ui-state-active span {
+.checkbox.isActive label {
     color: #606060;
-    }*/
+    }
 
 
 /* input[type='text'] etc*/
@@ -365,6 +363,52 @@ h3 {
     color: #999;
     }
 
+.input-single {
+    background: none repeat scroll 0 0 #FFF;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    position: relative;
+    }
+
+.input-single input {
+    color: #00A4E4;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    font-size: 16px;
+    height: 20px;
+    margin: -5px -10px;
+    padding: 5px 10px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    }
+
+.input-single.isHover {
+    border-bottom: 1px solid #D1D1D1;
+    }
+
+.input-single.isFocused {
+    border-bottom: 1px solid #00A4E4;
+    }
+
+.input-single.isDisabled {
+    border-bottom: 1px solid #F1F1F1;
+    }
+
+.input-single.isDisabled input {
+    color: #999;
+    }
+
+.input-single .placeholder {
+    top: 10px;
+    font-size: 14px;
+    left: 35%;
+    text-align: center;
+    width: 30%;
+    }
+
 .placeholder {
     color: #CCCCCC;
     font-size: 16px;
@@ -372,11 +416,19 @@ h3 {
     position: absolute;
     top: 12px;
     z-index: 9;
+    -webkit-transition: margin  150ms ease-out, font-size 150ms ease-out;
+       -moz-transition: margin  150ms ease-out, font-size 150ms ease-out;
+        -ms-transition: margin  150ms ease-out, font-size 150ms ease-out;
+         -o-transition: margin  150ms ease-out, font-size 150ms ease-out;
+            transition: margin  150ms ease-out, font-size 150ms ease-out;
     }
 .placeholder.noVisible {
     display: none;
     }
-
+.placeholder.isReduced {
+    margin-top: 25px;
+    font-size: 12px;
+    }
 
 
 /*textarea */

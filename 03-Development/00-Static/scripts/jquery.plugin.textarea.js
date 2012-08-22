@@ -7,7 +7,7 @@
  * }
  */
 (function($){
-    var params;
+
 
     $.fn.textarea = function(params) {
         var isResize,
