@@ -10,9 +10,11 @@
         return this.each(function () {
             var $this = $(this),
                 wrapper = $this.parent(),
-                object = $this[0],
+                buttonDom = $this[0],
                 form,
+                action,
                 code,
+                eventAction,
                 isPressed = false,
                 isFocused = false,
                 isHover = false,
@@ -25,27 +27,37 @@
                 wrapper.removeClass('isDisabled');
             }
 
-            isDisabled = object.disabled;
+            isDisabled = buttonDom.disabled;
 
-            if ((object.tagName == 'A') && (object.href.length > 0)){
-                if (object.target != '') {
-                    wrapper.on('click', function(){
-                        window.open(object.href, object.target);
-                    });
+            if ((buttonDom.tagName == 'A') && (buttonDom.href.length > 0)){
+                if (buttonDom.target != '') {
+                    action = function(){
+                        window.open(buttonDom.href, buttonDom.target);
+                    };
                 }
-                else if (object.target === '') {
-                    wrapper.on('click', function(){
-                        console.log(object.getAttribute('data-disable'));
-                        window.location.href = object.href;
-                    });
+                else if (buttonDom.target === '') {
+                    action = function(){
+                        window.location.href = buttonDom.href;
+                    };
                 }
-            } else if((object.tagName == 'INPUT') && (object.type == 'submit')){
+            } else if((buttonDom.tagName == 'INPUT') && (buttonDom.type == 'submit')){
                 form = $this.closest('form')[0];
                 if (form !== undefined) {
-                    wrapper.on('click', function(){
+                    action = function(){
                         form.submit();
-                    });
+                    }
                 }
+            } else {
+                // todo action для кастомных событий jquery
+//                action = $.Event('custom');
+            }
+
+            if (action !== undefined){
+                wrapper.on({
+                    click: action,
+                    touchstart: action,
+                    keypress: action
+                });
             }
 
             function keyDown(e, code){
@@ -65,7 +77,7 @@
             }
             function commonKeyDown(e){
                 if ((e.keyCode == 9) && ($d.isIE && ($d.browserVersion < 9))){
-                    if (!object.disabled) {
+                    if (!buttonDom.disabled) {
                         wrapper.removeClass('isFocused').removeClass('isPressed');
                         isFocused = false;
                     }
@@ -88,13 +100,10 @@
             wrapper.on({
 //                touch
                 touchstart: function(e) {
-                    // todo убрать проверку
-                    if ((!object.disabled) && (!object.getAttribute('data-disable'))){
+                    // todo убрать проверку с этого уровня
+                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))){
                         e.preventDefault();
                         isPressed = true;
-                        if (!isFocused) {
-                            wrapper.focus();
-                        }
                         wrapper.addClass('isPressed');
                     }
                 },
@@ -104,7 +113,7 @@
                 },
 //                hover
                 mouseenter: function() {
-                    if ((!object.disabled) && (!object.getAttribute('data-disable'))) {
+                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))) {
                         isHover = true;
                         wrapper.addClass('isHover');
                     }
@@ -115,7 +124,7 @@
                 },
 //                pressed
                 mousedown: function(e) {
-                    if ((!object.disabled) && (!object.getAttribute('data-disable'))){
+                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))){
                         e.preventDefault();
                         isPressed = true;
                         wrapper.addClass('isPressed');
@@ -130,7 +139,7 @@
                 },
 //                focus
                 focus: function() {
-                    if ((!object.disabled) && (!object.getAttribute('data-disable')) && (!$d.isTouch)) {
+                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable')) && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
@@ -142,7 +151,7 @@
             });
             $this.on({
                 focus: function() {
-                    if ((!object.disabled) && (!$d.isTouch)) {
+                    if ((!buttonDom.disabled) && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
@@ -166,33 +175,31 @@
         });
     };
 
-    $.fn.setDisable = function(params){
+    $.fn.setDisableButton = function(isDisable){
         var isDisabled;
-
 
         return this.each(function () {
             var $this = $(this),
+                buttonDom = $(this)[0],
                 wrapper = $this.parent();
 
-            if(params) {
-                if ($this[0].tagName == 'A') {
+            if(isDisable) {
+                if (buttonDom.tagName == 'A') {
                     $this.attr('data-disable', 'true');
                 } else {
                     $this.prop('disabled', true);
                 }
-                wrapper.addClass('isDisabled');
+                wrapper.addClass('isDisabled').removeClass('isPressed').removeClass('isHover').removeClass('isFocused');
                 isDisabled = true;
             } else {
-                if ($this[0].tagName == 'A') {
-                    $this[0].removeAttribute('data-disable');
+                if (buttonDom.tagName == 'A') {
+                    buttonDom.removeAttribute('data-disable');
                 } else {
                     $this.prop('disabled', false);
                 }
                 wrapper.removeClass('isDisabled');
                 isDisabled = false;
             }
-
-
         });
     };
 })(jQuery);

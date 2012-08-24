@@ -27,68 +27,91 @@
         $(function() {
             $('.jsTextarea').textarea();
 
-            $('#textAreaResize').textarea({resize: true});
+            $('#textAreaResize').textarea(true);
+
+            $('#addDisableTextarea').parent().on({
+                click: function(){
+                    $('.jsTextarea').setDisableInput(true);
+                },
+                touchstart: function() {
+                    $('.jsTextarea').setDisableInput(true);
+                }
+            });
+
+            $('#removeDisableTextarea').parent().on({
+                click: function(){
+                    $('.jsTextarea').setDisableInput(false);
+                },
+                touchstart: function(){
+                    $('.jsTextarea').setDisableInput(false);
+                }
+            });
 
             $('.jsRealButton').button();
 
             $('#addDisableButton').parent().on({
                 click: function(){
-                    $('.disableButton').setDisable(true);
+                    $('.disableButton').setDisableButton(true);
                 },
                 touchstart: function() {
-                    $('.disableButton').setDisable(true);
+                    $('.disableButton').setDisableButton(true);
                 }
             });
 
             $('#removeDisableButton').parent().on({
                 click: function(){
-                    $('.disableButton').setDisable(false);
+                    $('.disableButton').setDisableButton(false);
                 },
                 touchstart: function(){
-                    $('.disableButton').setDisable(false);
+                    $('.disableButton').setDisableButton(false);
                 }
             });
 
             $('#addDisableInput').parent().on({
                 click: function(){
-                    $('.jsRealInput').prop('disabled', true);
-                    $('.jsVisualInput').removeClass('isHover').removeClass('isFocused').addClass('isDisabled');
+                    $('.jsRealInput').setDisableInput(true);
                 },
                 touchstart: function() {
-                    $('.jsRealInput').prop('disabled', true);
-                    $('.jsVisualInput').removeClass('isHover').removeClass('isFocused').addClass('isDisabled');
+                    $('.jsRealInput').setDisableInput(true);
                 }
             });
 
             $('#removeDisableInput').parent().on({
                 click: function(){
-                    $('.jsRealInput').prop('disabled', false);
-                    $('.jsVisualInput').removeClass('isDisabled');
+                    $('.jsRealInput').setDisableInput(false);
                 },
                 touchstart: function(){
-                    $('.jsRealInput').prop('disabled', false);
-                    $('.jsVisualInput').removeClass('isDisabled');
+                    $('.jsRealInput').setDisableInput(false);
                 }
             });
 
             $('.jsRealInput').input();
 
-            $('.jsTextarea, .jsRealInput').next('label').placeholder();
+            $('.jsTextarea, .jsRealInput').placeholder();
 
-            $('.jsAnimateLabel').next('label').placeholder({focus: true});
+            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
 
-            $('.jsAnimateLabel').on({
-                focus: function(){
-                    $(this).next('label').addClass('isReduced');
-                },
-                blur: function(){
-                    if ($(this)[0].value.length === 0) {
-                        $(this).next('label').removeClass('isReduced');
+            function animateOnPlaceholder(){
+                $('.jsAnimateLabel').on({
+                    focus: function(){
+                        $(this).next('label').addClass('isReduced');
                     }
-                }
-            });
+                });
+            }
 
-            $(".jsRealCheckbox")._checkbox();
+            function animateOffPlaceholder(){
+                $('.jsAnimateLabel').on({
+                    blur: function(){
+                        if ($(this)[0].value.length === 0) {
+                            $(this).next('label').removeClass('isReduced');
+                        }
+                    }
+                });
+            }
+
+            $(".jsRealCheckbox").ischeckbox();
+
+
         });
     </script>
 
@@ -136,15 +159,24 @@
             <label for="textPassword" class="placeholder">Введите пароль</label>
         </div>
 
+        <h3>Disable textarea</h3>
+        <div class="jsVisualButton cancel-button">
+            <input type="button" class="jsRealButton" id="addDisableTextarea" />
+            <span>Навесить disable на textarea</span>
+        </div>
+        <div class="jsVisualButton default-button">
+            <input type="button" class="jsRealButton" id="removeDisableTextarea" />
+            <span>Снять disable с textarea</span>
+        </div>
         <h3>Textarea</h3>
         <div class="textarea">
-            <textarea class="jsTextarea" id="textArea" rows="4" cols="10">Watch me expand to encompass your every word!</textarea>
+            <textarea class="jsTextarea" id="textArea">Watch me expand to encompass your every word!</textarea>
             <label for="textArea" class="placeholder">Введите много текста</label>
         </div>
 
         <h3>Textarea resize</h3>
         <div class="textarea">
-            <textarea class="jsTextarea" id="textAreaResize" rows="4" cols="10">Watch me expand to encompass your every word!</textarea>
+            <textarea class="jsTextarea" id="textAreaResize">Watch me expand to encompass your every word!</textarea>
             <label for="textAreaResize" class="placeholder">Введите много текста</label>
         </div>
 

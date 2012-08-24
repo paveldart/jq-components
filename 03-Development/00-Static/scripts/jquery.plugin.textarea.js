@@ -1,22 +1,14 @@
 /**
  * jQ textarea plugin
  * $(id).textarea(params);
- * resize params:
- * params = {
- *     resize: true
- * }
+ * @param {Boolean} isResize flag resize
  */
 (function($){
 
 
-    $.fn.textarea = function(params) {
-        var isResize,
-//            настройки по умолчанию
-            settings = {
-                resize: false
-            };
+    $.fn.textarea = function(isResize) {
 
-        return this.each(function () {
+        return this.each(function(){
             var $this = $(this),
                 wrapper = $this.parent(),
                 isPressed = false,
@@ -25,14 +17,8 @@
                 area,
                 span;
 
-            if (params) {
-                $.extend(settings, params);
-            }
-
-            isResize = settings.resize;
-
             if(isResize) {
-                wrapper.append('<pre><span></span><br /></pre>');
+                wrapper.append('<pre><span></span></pre>');
 
                 area = wrapper.children('textarea')[0];
                 span = wrapper.find('span')[0];

@@ -22,24 +22,40 @@
 
     <script>
         $(function() {
+            var i=0;
+            /**
+             * placeholder
+             * @param {Boolean} isOnFocus flag focus or onInput
+             * @param {Function} onShowPlaceholder
+             * @param {Function} onHidePlaceholder
+             *
+             */
+            //$('.jsRealPlaceholder').placeholder(true, function(){}, function(){}, true);
             $('.jsRealInput').input();
 
-            $('.jsTextarea').textarea({resize: true});
+            $('.jsTextarea').textarea(true);
 
-            $('.jsTextarea, .jsRealInput').next('label').placeholder();
+            $('.jsTextarea, .jsRealInput').placeholder();
 
-            $('.jsAnimateLabel').next('label').placeholder({focus: true});
+            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
 
-            $('.jsAnimateLabel').on({
+            function animateOnPlaceholder(){
+                $('.jsAnimateLabel').on({
                     focus: function(){
                         $(this).next('label').addClass('isReduced');
-                    },
+                    }
+                });
+            }
+
+            function animateOffPlaceholder(){
+                $('.jsAnimateLabel').on({
                     blur: function(){
                         if ($(this)[0].value.length === 0) {
                             $(this).next('label').removeClass('isReduced');
                         }
                     }
                 });
+            }
         });
     </script>
 

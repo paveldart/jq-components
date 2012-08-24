@@ -96,6 +96,7 @@ h3 {
     margin-bottom: 5px;
     text-decoration: none;
     display: inline-block;
+    position: relative;
     border: 0;
     -webkit-border-radius: 4px;
        -moz-border-radius: 4px;
@@ -103,10 +104,8 @@ h3 {
             border-radius: 4px;
     }
 
-.confirm-button input,
-.cancel-button input,
-.default-button input {
-    margin-right: 5px;
+input.jsRealButton {
+    margin-right: 10px;
     position: absolute;
     right: 100%;
     }
@@ -284,6 +283,10 @@ h3 {
 .isDisabled {
     opacity: 0.5;
     cursor: default;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+         -o-user-select: none;
+            user-select: none;
     }
 
 
@@ -317,10 +320,16 @@ h3 {
     vertical-align: top;
     }
 
-.checkbox.isActive i {
-    background: url("http://www.showroom.softwearfinance.com/single/bank/images/ui.png") no-repeat scroll -141px -35px transparent;
+.checkbox.isSelected i {
+    background: url("../images/ui.png") no-repeat scroll -141px -35px transparent;
     }
-.checkbox.isActive label {
+.checkbox.isHover i {
+    border: 1px solid #999;
+    }
+.checkbox.isFocused i {
+    border: 1px solid #20B0E6;
+    }
+.checkbox.isSelected label {
     color: #606060;
     }
 
@@ -353,14 +362,6 @@ h3 {
 
 .text-input.isFocused {
     box-shadow: 0 1px 4px 0 #BEBEBE inset;
-    }
-
-.text-input.isDisabled {
-    box-shadow: 0 0 0 1px #eee inset;
-    }
-
-.text-input.isDisabled input {
-    color: #999;
     }
 
 .input-single {
@@ -438,6 +439,7 @@ h3 {
     margin: 0 0 20px;
     overflow: hidden;
     position: relative;
+    min-height: 40px;
     }
 
 .textarea textarea,
@@ -459,9 +461,8 @@ h3 {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
+    resize: none;
     width: 100%;
-    min-width: 100%;
-    max-width: 100%;
     height: 100px;
     }
 

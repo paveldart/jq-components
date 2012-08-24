@@ -32,8 +32,24 @@
         });
     };
 
-    function isDisable(obj) {
-        $(obj).prop('disabled', true);
+    $.fn.setDisableInput= function(isDisable){
+        var isDisabled;
 
-    }
+        return this.each(function () {
+            var $this = $(this),
+                wrapper = $this.parent();
+
+            if(isDisable) {
+                $this.prop('disabled', true);
+                wrapper.addClass('isDisabled').removeClass('isPressed').removeClass('isHover').removeClass('isFocused');
+                isDisabled = true;
+            } else {
+                $this.prop('disabled', false);
+                wrapper.removeClass('isDisabled');
+                isDisabled = false;
+            }
+
+
+        });
+    };
 })(jQuery);

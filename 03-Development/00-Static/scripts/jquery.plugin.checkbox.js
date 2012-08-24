@@ -5,7 +5,7 @@
 (function($){
     var $d = $().$d;
 
-    $.fn._checkbox = function() {
+    $.fn.ischeckbox = function() {
 
         return this.each(function () {
             var $this = $(this),
@@ -17,21 +17,28 @@
 
             wrapper.on({
 //                touch
-//                touchstart: function(e) {
-//                    // todo убрать проверку
-//                    if ((!object.disabled) && (!object.getAttribute('data-disable'))){
-//                        e.preventDefault();
-//                        isPressed = true;
-//                        if (!isFocused) {
-//                            wrapper.focus();
-//                        }
-//                        wrapper.addClass('isPressed');
-//                    }
-//                },
-//                touchend: function(){
-//                    wrapper.removeClass('isPressed');
-//                    isPressed = false;
-//                },
+                touchstart: function(e) {
+                    e.preventDefault();
+                    isPressed = true;
+                    wrapper.addClass('isPressed');
+                },
+                touchend: function(){
+                    wrapper.removeClass('isPressed');
+                    isPressed = false;
+                },
+//                pressed
+                mousedown: function(e) {
+                    e.preventDefault();
+                    isPressed = true;
+                    wrapper.addClass('isPressed');
+                    wrapper.mouseleave(function() {
+                        wrapper.removeClass('isPressed');
+                    });
+                },
+                mouseup: function() {
+                    wrapper.removeClass('isPressed');
+                    isPressed = false;
+                },
 //                hover
                 mouseenter: function() {
                     isHover = true;
@@ -40,22 +47,22 @@
                 mouseleave: function() {
                     isHover = false;
                     wrapper.removeClass('isHover');
-                },
-//                focus
-                focus: function() {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
-                },
-                blur: function(){
-                    wrapper.removeClass('isFocused').removeClass('isPressed');
-                    isFocused = false;
                 }
             });
 //            toggle
             wrapper.toggle(function() {
-                wrapper.addClass('isActive');
+                wrapper.addClass('isSelected');
             }, function(){
-                wrapper.removeClass('isActive');
+                wrapper.removeClass('isSelected');
+            });
+//            focus (в 'on' не работает)
+            $this.focus(function() {
+                isFocused = true;
+                wrapper.addClass('isFocused');
+            });
+            $this.blur(function() {
+                wrapper.removeClass('isFocused');
+                isFocused = false;
             });
         });
     };
