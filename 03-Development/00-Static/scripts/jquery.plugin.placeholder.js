@@ -59,36 +59,41 @@
             if (isOnFocus){
                 $this.on({
                     focus: function(){
-                        onHidePlaceholder === undefined ? placeholder.hide() : onHidePlaceholder(placeholder);
+                        onHidePlaceholder === undefined ? placeholder.addClass('noVisible') : onHidePlaceholder(placeholder);
                     },
                     blur: function(){
-                        onShowPlaceholder === undefined ? placeholder.show() : onShowPlaceholder(placeholder);
+                        onShowPlaceholder === undefined ? placeholder.removeClass('noVisible') : onShowPlaceholder(placeholder);
                     }
+                });
+            } else {
+                $this.on({
+                    keydown: hiddenPlaceholder,
+                    keyup: visiblePlaceholder
                 });
             }
 
 
-//            function hiddenPlaceholder(e){
-//                keyCode = e.keyCode || e.which;
-//                if (keyCode !== 9) {
-//                    if (isVisible && !placeholder[0].getAttribute('data-focused')) {
-//                        placeholder.addClass('noVisible');
-//                        isVisible = false;
-//                    }
-//                }
-//            }
-//
-//            function visiblePlaceholder(e) {
-//                keyCode = e.keyCode || e.which;
-//                if (keyCode !== 9) {
-//                    if(!isVisible) {
-//                        if ((inputOrTextarea !== undefined) && (inputOrTextarea.value.length === 0)){
-//                            placeholder.removeClass('noVisible');
-//                            isVisible = true;
-//                        }
-//                    }
-//                }
-//            }
+            function hiddenPlaceholder(e){
+                keyCode = e.keyCode || e.which;
+                if (keyCode !== 9) {
+                    if (isVisible && !placeholder[0].getAttribute('data-focused')) {
+                        placeholder.addClass('noVisible');
+                        isVisible = false;
+                    }
+                }
+            }
+
+            function visiblePlaceholder(e) {
+                keyCode = e.keyCode || e.which;
+                if (keyCode !== 9) {
+                    if(!isVisible) {
+                        if ((inputOrTextarea !== undefined) && (inputOrTextarea.value.length === 0)){
+                            placeholder.removeClass('noVisible');
+                            isVisible = true;
+                        }
+                    }
+                }
+            }
 //
 //            wrapper.on({
 //                keydown: hiddenPlaceholder,
@@ -99,46 +104,46 @@
     };
 }(jQuery));
 
-(function(){
-    var y = {},
-        x = function(element){
-            element.e = y;
-            y.this = element;
-            return element;
-        };
-    y.placeholder = function(isOnFocus, show, hide){
-        if (isOnFocus){
-            y.this.onfocus = show === undefined ? function(){
-                console.log('fuck');
-            } : function(){
-                show.call(y.this);
-            };
-            y.this.onblur = hide === undefined ? function(){
-                console.log('you');
-            } : function(){
-                hide.call(y.this);
-            };
-        }
-    };
-    function show(){
-        this.style.border = '1px solid #f00';
-    }
-    function hide(){
-        this.style.border = '1px solid #0f0';
-    }
-    function show2(){
-        this.style.border = '1px solid #f00';
-        SLEDGE.animate(this, {top: '120px'}, 500);
-    }
-    function hide2(){
-        this.style.border = '1px solid #0f0';
-        SLEDGE.animate(this, {top: '0px'}, 500);
-    }
-    var asd = document.createElement('input');
-    asd.type = 'text';
-    asd.style.position = 'relative';
-    x(asd).e.placeholder(true, show2, hide2);
-    window.onload = function(){
-        document.body.appendChild(asd);
-    }
-}());
+//(function(){
+//    var y = {},
+//        x = function(element){
+//            element.e = y;
+//            y.this = element;
+//            return element;
+//        };
+//    y.placeholder = function(isOnFocus, show, hide){
+//        if (isOnFocus){
+//            y.this.onfocus = show === undefined ? function(){
+//                console.log('fuck');
+//            } : function(){
+//                show.call(y.this);
+//            };
+//            y.this.onblur = hide === undefined ? function(){
+//                console.log('you');
+//            } : function(){
+//                hide.call(y.this);
+//            };
+//        }
+//    };
+//    function show(){
+//        this.style.border = '1px solid #f00';
+//    }
+//    function hide(){
+//        this.style.border = '1px solid #0f0';
+//    }
+//    function show2(){
+//        this.style.border = '1px solid #f00';
+//        SLEDGE.animate(this, {top: '120px'}, 500);
+//    }
+//    function hide2(){
+//        this.style.border = '1px solid #0f0';
+//        SLEDGE.animate(this, {top: '0px'}, 500);
+//    }
+//    var asd = document.createElement('input');
+//    asd.type = 'text';
+//    asd.style.position = 'relative';
+//    x(asd).e.placeholder(true, show2, hide2);
+//    window.onload = function(){
+//        document.body.appendChild(asd);
+//    }
+//}());

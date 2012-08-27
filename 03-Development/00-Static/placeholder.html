@@ -28,8 +28,6 @@
 
             $('.jsTextarea, .jsRealInput').placeholder();
 
-            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
-
             function animateOnPlaceholder(){
                 $('.jsAnimateLabel').on({
                     focus: function(){
@@ -47,6 +45,8 @@
                     }
                 });
             }
+
+            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
 
         });
     </script>
