@@ -48,8 +48,10 @@
                     }
                 }
             } else {
-                // todo action для кастомных событий jquery
-//                action = $.Event('custom');
+                action = function(){
+                    eventAction = $.Event('click');
+//                    $this.trigger(eventAction); //todo RangeError: Maximum call stack size exceeded.
+                }
             }
 
             if (action !== undefined){

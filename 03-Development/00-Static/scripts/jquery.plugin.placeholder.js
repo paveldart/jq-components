@@ -12,7 +12,6 @@
     $.fn.placeholder = function(isOnFocus, onShowPlaceholder, onHidePlaceholder) {
         var $this = $(this);
 
-
         return this.each(function (i, object) {
             var $this = $(this),
                 wrapper = $this.parent(),
@@ -25,15 +24,15 @@
 
             if (isOnFocus) {
                 placeholder.attr('data-focused', 'true');
+                if (onShowPlaceholder) {
+                    onShowPlaceholder();
+                }
+
+                if (onHidePlaceholder) {
+                    onHidePlaceholder();
+                }
             }
 
-            if (onShowPlaceholder) {
-                onShowPlaceholder();
-            }
-
-            if (onHidePlaceholder) {
-                onHidePlaceholder();
-            }
 
 //            check value & state
             if (inputOrTextarea !== undefined) {
@@ -82,3 +81,47 @@
         });
     };
 }(jQuery));
+
+//(function(){
+//    var y = {},
+//        x = function(element){
+//            element.e = y;
+//            y.this = element;
+//            return element;
+//        };
+//    y.placeholder = function(isOnFocus, show, hide){
+//        if (isOnFocus){
+//            y.this.onfocus = show === undefined ? function(){
+//                console.log('fuck');
+//            } : function(){
+//                show.call(y.this);
+//            };
+//            y.this.onblur = hide === undefined ? function(){
+//                console.log('you');
+//            } : function(){
+//                hide.call(y.this);
+//            };
+//        }
+//    };
+//    function show(){
+//        this.style.border = '1px solid #f00';
+//    }
+//    function hide(){
+//        this.style.border = '1px solid #0f0';
+//    }
+//    function show2(){
+//        this.style.border = '1px solid #f00';
+//        SLEDGE.animate(this, {top: '120px'}, 500);
+//    }
+//    function hide2(){
+//        this.style.border = '1px solid #0f0';
+//        SLEDGE.animate(this, {top: '0px'}, 500);
+//    }
+//    var asd = document.createElement('input');
+//    asd.type = 'text';
+//    asd.style.position = 'relative';
+//    x(asd).e.placeholder(true, show2, hide2);
+//    window.onload = function(){
+//        document.body.appendChild(asd);
+//    }
+//}());
