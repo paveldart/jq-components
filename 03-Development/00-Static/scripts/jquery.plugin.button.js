@@ -20,12 +20,16 @@
                 isHover = false,
                 isDisabled = false,
                 isKeyDown = false;
-
             if ($this[0].disabled) {
                 wrapper.addClass('isDisabled');
             } else {
                 wrapper.removeClass('isDisabled');
             }
+
+            $this.context.setDisabled = function(isADisabled){
+                isDisabled = isADisabled;
+            };
+
 
             isDisabled = buttonDom.disabled;
 
@@ -53,14 +57,15 @@
 //                    $this.trigger(eventAction); //todo RangeError: Maximum call stack size exceeded.
                 }
             }
+//            action();
 
-            if (action !== undefined){
-                wrapper.on({
-                    click: action,
-                    touchstart: action,
-                    keypress: action
-                });
-            }
+//            if (action !== undefined){
+//                wrapper.on({
+//                    click: action,
+//                    touchstart: action,
+//                    keypress: action
+//                });
+//            }
 
             function keyDown(e, code){
                 if ((code == 13) || (code == 32)){
