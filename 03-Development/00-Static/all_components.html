@@ -22,6 +22,7 @@
     <script src="scripts/jquery.plugin.textarea.js" type="text/javascript"></script>
     <script src="scripts/jquery.plugin.placeholder.js" type="text/javascript"></script>
     <script src="scripts/jquery.plugin.checkbox.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.radio.js" type="text/javascript"></script>
 
     <script>
         $(function() {
@@ -29,89 +30,49 @@
 
             $('#textAreaResize').textarea(true);
 
-            $('#addDisableTextarea').parent().on({
-                click: function(){
-                    $('.jsTextarea').setDisableInput(true);
-                },
-                touchstart: function() {
-                    $('.jsTextarea').setDisableInput(true);
-                }
+            $('#addDisableTextarea').click(function(){
+                $('.jsTextarea').setDisable(true);
             });
 
-            $('#removeDisableTextarea').parent().on({
-                click: function(){
-                    $('.jsTextarea').setDisableInput(false);
-                },
-                touchstart: function(){
-                    $('.jsTextarea').setDisableInput(false);
-                }
+            $('#removeDisableTextarea').click(function(){
+                $('.jsTextarea').setDisable(false);
             });
 
             $('.jsRealButton').button();
 
-            $('#addDisableButton').parent().on({
-                click: function(){
-                    $('.disableButton').setDisableButton(true);
-                },
-                touchstart: function() {
-                    $('.disableButton').setDisableButton(true);
-                }
+            $('.addDisabledButton').click(function(){
+                $('.disableButton').setDisable(true);
             });
 
-            $('#removeDisableButton').parent().on({
-                click: function(){
-                    $('.disableButton').setDisableButton(false);
-                },
-                touchstart: function(){
-                    $('.disableButton').setDisableButton(false);
-                }
+            $('.removeDisabledButton').click(function(){
+                $('.disableButton').setDisable(false);
             });
 
-            $('#addDisableInput').parent().on({
-                click: function(){
-                    $('.jsRealInput').setDisableInput(true);
-                },
-                touchstart: function() {
-                    $('.jsRealInput').setDisableInput(true);
-                }
+            $('#addDisableInput').click(function(){
+                $('.jsRealInput').setDisable(true);
             });
 
-            $('#removeDisableInput').parent().on({
-                click: function(){
-                    $('.jsRealInput').setDisableInput(false);
-                },
-                touchstart: function(){
-                    $('.jsRealInput').setDisableInput(false);
-                }
+            $('#removeDisableInput').click(function(){
+                $('.jsRealInput').setDisable(false);
             });
 
             $('.jsRealInput').input();
 
             $('.jsTextarea, .jsRealInput').placeholder();
 
-            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
+            $('.jsAnimate').placeholder(true, animateBottomPlaceholder, animateTopPlaceholder);
 
-            function animateOnPlaceholder(){
-                $('.jsAnimateLabel').on({
-                    focus: function(){
-                        $(this).next('label').addClass('isReduced');
-                    }
-                });
+            function animateBottomPlaceholder(){
+                this.addClass('isReduced');
             }
 
-            function animateOffPlaceholder(){
-                $('.jsAnimateLabel').on({
-                    blur: function(){
-                        if ($(this)[0].value.length === 0) {
-                            $(this).next('label').removeClass('isReduced');
-                        }
-                    }
-                });
+            function animateTopPlaceholder(){
+                this.removeClass('isReduced');
             }
 
             $(".jsRealCheckbox").ischeckbox();
 
-
+            $(".jsRealRadio").radiobutton();
         });
     </script>
 
@@ -120,14 +81,13 @@
     <div class="conteiner">
         <h3>Disable кнопок</h3>
         <div class="jsVisualButton cancel-button">
-            <input type="button" class="jsRealButton" id="addDisableButton" />
-            <span>Навесить disable</span>
+            <input type="button" class="jsRealButton addDisabledButton" />
+            <span>Add Disable</span>
         </div>
         <div class="jsVisualButton default-button">
-            <input type="button" class="jsRealButton" id="removeDisableButton" />
-            <span>Снять disable</span>
-        </div>
-        <br />
+            <input type="button" class="jsRealButton removeDisabledButton" />
+            <span>Remove Disable</span>
+        </div><br />
         <div class="jsVisualButton confirm-button">
             <input type="button" class="jsRealButton disableButton" />
             <span>Кнопка input</span>
@@ -199,14 +159,45 @@
 
         <h3>Animate placeholder</h3>
         <div class="jsVisualInput input-single">
-            <input type="text" class="jsRealInput jsAnimateLabel">
+            <input type="text" class="jsRealInput jsAnimate">
             <label class="placeholder">Логин</label>
         </div>
         <div class="jsVisualInput input-single">
-            <input type="password" class="jsRealInput jsAnimateLabel">
+            <input type="password" class="jsRealInput jsAnimate">
             <label class="placeholder">Пароль</label>
         </div>
 
+        <h3>Radio</h3>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio1" />
+            <i></i>
+            <label class="label-radio" for="radio1">Вход в интернет-банк</label>
+        </div>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio2" />
+            <i></i>
+            <label class="label-radio" for="radio2">Неправильный ввод пароля</label>
+        </div>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio3" />
+            <i></i>
+            <label class="label-radio" for="radio3">Блокировка учетной записи</label>
+        </div>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio4" />
+            <i></i>
+            <label class="label-radio" for="radio4">Блокировка учетной записи</label>
+        </div>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio5" />
+            <i></i>
+            <label class="label-radio" for="radio5">Блокировка учетной записи</label>
+        </div>
+        <div class="jsVisualRadio radio">
+            <input type="radio" name="radio" class="jsRealRadio" id="radio6" />
+            <i></i>
+            <label class="label-radio" for="radio6">Блокировка учетной записи</label>
+        </div>
         <h3>Checkbox</h3>
         <div class="jsVisualCheckbox checkbox">
             <input type="checkbox" class="jsRealCheckbox" id="check1" />

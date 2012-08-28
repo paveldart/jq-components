@@ -1,21 +1,45 @@
 /**
- * jQ button plugin
- *
+ * jQ radiobutton plugin
+ * $(id).radiobutton();
  */
+
 (function($){
     var $d = $().$d;
 
     $.fn.radiobutton = function() {
+        var $this = $(this),
+            length = $this.length,
+            cacheLength = length,
+            wrappers = {};
 
-        return this.each(function () {
+        for (;length--;) {
+            wrappers[length] = $this[length].parentElement;
+        }
+        length = cacheLength;
+
+//        remove class 'isSelected'
+        function removeClassName(){
+            for (;length--;) {
+                wrappers[length].className = wrappers[length].className.replace( /(?:^|\s)isSelected(?!\S)/g , '' );
+
+            }
+            length = cacheLength;
+        }
+
+        return this.each(function(i, object){
             var $this = $(this),
                 wrapper = $this.parent(),
+                trueRadio = $this[0],
                 isPressed = false,
                 isFocused = false,
                 isHover = false;
 
+//            check default value
+            if(trueRadio.checked) {
+                wrapper.addClass('isSelected');
+            }
 
-            wrapper.on({
+                wrapper.on({
 //                touch
                 touchstart: function(e) {
                     e.preventDefault();
@@ -25,6 +49,9 @@
                 touchend: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
+                    removeClassName();
+                    wrapper.addClass('isSelected');
+                    trueRadio.checked = true;
                 },
 //                pressed
                 mousedown: function(e) {
@@ -49,11 +76,13 @@
                     wrapper.removeClass('isHover');
                 }
             });
-//            toggle
-            wrapper.toggle(function() {
-                wrapper.addClass('isSelected');
-            }, function(){
-                wrapper.removeClass('isSelected');
+//            click
+            wrapper.click(function() {
+                if(!trueRadio.checked) {
+                    removeClassName();
+                    wrapper.addClass('isSelected');
+                    trueRadio.checked = true;
+                }
             });
 //            focus (в 'on' не работает)
             $this.focus(function() {

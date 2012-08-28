@@ -22,7 +22,13 @@
         $(function() {
             $('.jsRealButton').button();
 
-            $('.disableButton').setDisableButton(true);
+            $('.addDisabledButton').click(function(){
+                $('.disableButton').setDisable(true);
+            });
+
+            $('.removeDisabledButton').click(function(){
+                $('.disableButton').setDisable(false);
+            });
 
         });
 
@@ -32,13 +38,17 @@
 </head>
 <body>
    <h3>Button</h3>
-   <div class="jsVisualButton default-button">
-       <a class="jsRealButton"></a>
-       <span>Default Button</span>
-   </div>
    <div class="jsVisualButton cancel-button">
+       <input type="button" class="jsRealButton addDisabledButton" />
+       <span>Add Disable</span>
+   </div>
+   <div class="jsVisualButton default-button">
+       <input type="button" class="jsRealButton removeDisabledButton" />
+       <span>Remove Disable</span>
+   </div>
+   <div class="jsVisualButton confirm-button">
        <input type="button" class="jsRealButton disableButton" />
-       <span>Disable Button</span>
+       <span>Test Button</span>
    </div>
 </body>
 </html>

@@ -1,7 +1,14 @@
 /**
  * jQ button plugin
- *
+ * $(id).button();
  */
+
+/**
+ * jQ setDisable plugin
+ * $(id).setDisable(params);
+ * @param {Boolean} isOnFocus flag disable
+ */
+
 (function($){
     var $d = $().$d;
 
@@ -13,26 +20,21 @@
                 buttonDom = $this[0],
                 form,
                 action,
-                code,
                 eventAction,
                 isPressed = false,
                 isFocused = false,
                 isHover = false,
                 isDisabled = false,
                 isKeyDown = false;
-            if ($this[0].disabled) {
+
+//            check default values
+            if (buttonDom.disabled) {
                 wrapper.addClass('isDisabled');
             } else {
                 wrapper.removeClass('isDisabled');
             }
 
-            $this.context.setDisabled = function(isADisabled){
-                isDisabled = isADisabled;
-            };
-
-
-            isDisabled = buttonDom.disabled;
-
+//            action
             if ((buttonDom.tagName == 'A') && (buttonDom.href.length > 0)){
                 if (buttonDom.target != '') {
                     action = function(){
@@ -54,25 +56,18 @@
             } else {
                 action = function(){
                     eventAction = $.Event('click');
-//                    $this.trigger(eventAction); //todo RangeError: Maximum call stack size exceeded.
+                    $this.trigger(eventAction);
                 }
             }
-//            action();
 
-//            if (action !== undefined){
-//                wrapper.on({
-//                    click: action,
-//                    touchstart: action,
-//                    keypress: action
-//                });
-//            }
-
+//            key-function
             function keyDown(e, code){
                 if ((code == 13) || (code == 32)){
                     e.preventDefault();
                     e.stopPropagation();
                     isKeyDown = true;
                     wrapper.addClass('isPressed');
+                    action();
                 }
             }
 
@@ -107,8 +102,7 @@
             wrapper.on({
 //                touch
                 touchstart: function(e) {
-                    // todo убрать проверку с этого уровня
-                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))){
+                    if (buttonDom.getAttribute('disabled') !== 'disabled'){
                         e.preventDefault();
                         isPressed = true;
                         wrapper.addClass('isPressed');
@@ -117,10 +111,11 @@
                 touchend: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
+                    action();
                 },
 //                hover
                 mouseenter: function() {
-                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))) {
+                    if (buttonDom.getAttribute('disabled') !== 'disabled'){
                         isHover = true;
                         wrapper.addClass('isHover');
                     }
@@ -131,7 +126,7 @@
                 },
 //                pressed
                 mousedown: function(e) {
-                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable'))){
+                    if (buttonDom.getAttribute('disabled') !== 'disabled'){
                         e.preventDefault();
                         isPressed = true;
                         wrapper.addClass('isPressed');
@@ -143,10 +138,11 @@
                 mouseup: function() {
                     wrapper.removeClass('isPressed');
                     isPressed = false;
+                    action();
                 },
 //                focus
                 focus: function() {
-                    if ((!buttonDom.disabled) && (!buttonDom.getAttribute('data-disable')) && (!$d.isTouch)) {
+                    if ((buttonDom.getAttribute('disabled') !== 'disabled') && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
@@ -158,7 +154,7 @@
             });
             $this.on({
                 focus: function() {
-                    if ((!buttonDom.disabled) && (!$d.isTouch)) {
+                    if ((buttonDom.getAttribute('disabled') !== 'disabled') && (!$d.isTouch)) {
                         isFocused = true;
                         wrapper.addClass('isFocused');
                     }
@@ -182,7 +178,7 @@
         });
     };
 
-    $.fn.setDisableButton = function(isDisable){
+    $.fn.setDisable = function(isDisable){
         var isDisabled;
 
         return this.each(function () {
@@ -191,19 +187,11 @@
                 wrapper = $this.parent();
 
             if(isDisable) {
-                if (buttonDom.tagName == 'A') {
-                    $this.attr('data-disable', 'true');
-                } else {
-                    $this.prop('disabled', true);
-                }
+                buttonDom.setAttribute('disabled', 'disabled');
                 wrapper.addClass('isDisabled').removeClass('isPressed').removeClass('isHover').removeClass('isFocused');
                 isDisabled = true;
             } else {
-                if (buttonDom.tagName == 'A') {
-                    buttonDom.removeAttribute('data-disable');
-                } else {
-                    $this.prop('disabled', false);
-                }
+                buttonDom.removeAttribute('disabled');
                 wrapper.removeClass('isDisabled');
                 isDisabled = false;
             }

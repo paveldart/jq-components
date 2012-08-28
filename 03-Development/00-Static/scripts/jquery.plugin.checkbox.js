@@ -1,7 +1,8 @@
 /**
- * jQ button plugin
- *
+ * jQ checkbox plugin
+ * $(id).ischeckbox();
  */
+
 (function($){
     var $d = $().$d;
 
@@ -10,10 +11,15 @@
         return this.each(function () {
             var $this = $(this),
                 wrapper = $this.parent(),
+                trueCheckbox = $this[0],
                 isPressed = false,
                 isFocused = false,
                 isHover = false;
 
+//            check default value
+            if(trueCheckbox.checked) {
+                wrapper.addClass('isSelected');
+            }
 
             wrapper.on({
 //                touch
@@ -25,6 +31,13 @@
                 touchend: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
+                    if(!trueCheckbox.checked) {
+                        wrapper.addClass('isSelected');
+                        trueCheckbox.checked = true;
+                    } else {
+                        wrapper.removeClass('isSelected');
+                        trueCheckbox.checked = false;
+                    }
                 },
 //                pressed
                 mousedown: function(e) {
@@ -49,11 +62,15 @@
                     wrapper.removeClass('isHover');
                 }
             });
-//            toggle
-            wrapper.toggle(function() {
-                wrapper.addClass('isSelected');
-            }, function(){
-                wrapper.removeClass('isSelected');
+//            click
+            wrapper.click(function() {
+                if(!trueCheckbox.checked) {
+                    wrapper.addClass('isSelected');
+                    trueCheckbox.checked = true;
+                } else {
+                    wrapper.removeClass('isSelected');
+                    trueCheckbox.checked = false;
+                }
             });
 //            focus (в 'on' не работает)
             $this.focus(function() {
