@@ -290,50 +290,6 @@ input.jsRealButton {
     }
 
 
-/*checkbox */
-.checkbox {
-    width: -moz-max-content;
-    cursor: pointer;
-    }
-
-.checkbox input {
-    clip: rect(1px, 1px, 1px, 1px);
-    position: absolute;
-    }
-
-.checkbox label {
-    display: inline-block;
-    cursor: pointer;
-    line-height: 22px;
-    color: #20B0E6;
-    }
-
-.checkbox i {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #C6C6C6;
-    border-radius: 3px 3px 3px 3px;
-    display: inline-block;
-    height: 16px;
-    position: relative;
-    width: 16px;
-    margin-right: 5px;
-    vertical-align: top;
-    }
-
-.checkbox.isSelected i {
-    background: url("../images/ui.png") no-repeat scroll -141px -35px transparent;
-    }
-.checkbox.isHover i {
-    border: 1px solid #999;
-    }
-.checkbox.isFocused i {
-    border: 1px solid #20B0E6;
-    }
-.checkbox.isSelected label {
-    color: #606060;
-    }
-
-
 /* input[type='text'] etc*/
 .text-input {
     background: none repeat scroll 0 0 #F5F5F5;
@@ -490,4 +446,90 @@ input.jsRealButton {
 
 .textarea.isFocused {
     box-shadow: 0 1px 4px 0 #BEBEBE inset;
+    }
+
+/*checkbox */
+.checkbox {
+    cursor: pointer;
+    width: -moz-max-content;
+    }
+
+.checkbox input {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    }
+
+.checkbox label {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 22px;
+    color: #606060;
+    }
+
+.checkbox i {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C6C6C6;
+    border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+    height: 16px;
+    position: relative;
+    width: 16px;
+    margin-right: 5px;
+    vertical-align: top;
+    }
+
+.checkbox.isSelected i {
+    background: url("../images/ui.png") no-repeat scroll -141px -35px transparent;
+    }
+.checkbox.isHover i {
+    border: 1px solid #999;
+    }
+.checkbox.isFocused i {
+    border: 1px solid #20B0E6;
+    }
+.checkbox.isSelected label {
+    color: #20B0E6;
+    }
+
+/*radio */
+.radio {
+    width: -moz-max-content;
+    cursor: pointer;
+    }
+
+.radio input {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    }
+
+.radio label {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 20px;
+    color: #606060;
+    }
+
+.radio i {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C6C6C6;
+    border-radius: 15px;
+    display: inline-block;
+    height: 15px;
+    position: relative;
+    width: 15px;
+    margin-right: 5px;
+    vertical-align: top;
+    }
+
+.radio.isSelected i {
+    background: url("../images/ui.png") no-repeat scroll -12px -35px transparent;
+    }
+.radio.isHover i {
+    border: 1px solid #999;
+    }
+.radio.isFocused i {
+    border: 1px solid #20B0E6;
+    }
+.radio.isSelected label {
+    color: #20B0E6;
     }

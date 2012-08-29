@@ -1,4 +1,7 @@
-//jQ input plugin
+/**
+ * jQ input plugin
+ * $(id).input();
+ */
 
 (function($){
     $.fn.input = function() {
@@ -32,7 +35,7 @@
         });
     };
 
-    $.fn.setDisableInput= function(isDisable){
+    $.fn.setDisable = function(isDisable){
         var isDisabled;
 
         return this.each(function () {
