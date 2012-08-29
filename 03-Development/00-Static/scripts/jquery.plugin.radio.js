@@ -21,7 +21,7 @@
                 wrapper.addClass('isSelected');
             }
 
-                wrapper.on({
+            wrapper.on({
 //                touch
                 touchstart: function(e) {
                     e.preventDefault();
@@ -61,15 +61,17 @@
 //            click
             wrapper.click(function() {
                 if(!trueRadio.checked) {
-                    wrapper.siblings().removeClass('isSelected');
-                    wrapper.addClass('isSelected');
+                    $this.focus();
+                    wrapper.siblings().removeClass('isSelected').removeClass('isFocused');
+                    wrapper.addClass('isSelected').addClass('isFocused');
                     trueRadio.checked = true;
                 }
             });
 //            focus (в 'on' не работает)
             $this.focus(function() {
                 isFocused = true;
-                wrapper.addClass('isFocused');
+                wrapper.siblings().removeClass('isSelected');
+                wrapper.addClass('isSelected').addClass('isFocused');
             });
             $this.blur(function() {
                 wrapper.removeClass('isFocused');

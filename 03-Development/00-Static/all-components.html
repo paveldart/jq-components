@@ -41,11 +41,11 @@
             $('.jsRealButton').button();
 
             $('.addDisabledButton').click(function(){
-                $('.disableButton').setDisable(true);
+                $('.disableButton').setDisableButton(true);
             });
 
             $('.removeDisabledButton').click(function(){
-                $('.disableButton').setDisable(false);
+                $('.disableButton').setDisableButton(false);
             });
 
             $('#addDisableInput').click(function(){
@@ -71,27 +71,6 @@
                 this.removeClass('isReduced');
 
             }
-
-
-
-
-//            function animateOnPlaceholder(){
-//                $('.jsAnimateLabel').on({
-//                    focus: function(){
-//                        $(this).next('label').addClass('isReduced');
-//                    }
-//                });
-//            }
-//
-//            function animateOffPlaceholder(){
-//                $('.jsAnimateLabel').on({
-//                    blur: function(){
-//                        if ($(this)[0].value.length === 0) {
-//                            $(this).next('label').removeClass('isReduced');
-//                        }
-//                    }
-//                });
-//            }
 
             $(".jsRealCheckbox").ischeckbox();
 
@@ -191,51 +170,55 @@
         </div>
 
         <h3>Radio</h3>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio1" />
-            <i></i>
-            <label class="label-radio" for="radio1">Вход в интернет-банк</label>
-        </div>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio2" />
-            <i></i>
-            <label class="label-radio" for="radio2">Неправильный ввод пароля</label>
-        </div>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio3" />
-            <i></i>
-            <label class="label-radio" for="radio3">Блокировка учетной записи</label>
-        </div>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio4" />
-            <i></i>
-            <label class="label-radio" for="radio4">Блокировка учетной записи</label>
-        </div>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio5" />
-            <i></i>
-            <label class="label-radio" for="radio5">Блокировка учетной записи</label>
-        </div>
-        <div class="jsVisualRadio radio">
-            <input type="radio" name="radio" class="jsRealRadio" id="radio6" />
-            <i></i>
-            <label class="label-radio" for="radio6">Блокировка учетной записи</label>
+        <div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio1" />
+                <i></i>
+                <label class="label-radio" for="radio1">Вход в интернет-банк</label>
+            </div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio2" />
+                <i></i>
+                <label class="label-radio" for="radio2">Неправильный ввод пароля</label>
+            </div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio3" />
+                <i></i>
+                <label class="label-radio" for="radio3">Блокировка учетной записи</label>
+            </div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio4" />
+                <i></i>
+                <label class="label-radio" for="radio4">Блокировка учетной записи</label>
+            </div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio5" />
+                <i></i>
+                <label class="label-radio" for="radio5">Блокировка учетной записи</label>
+            </div>
+            <div class="jsVisualRadio radio">
+                <input type="radio" name="radio" class="jsRealRadio" id="radio6" />
+                <i></i>
+                <label class="label-radio" for="radio6">Блокировка учетной записи</label>
+            </div>
         </div>
         <h3>Checkbox</h3>
-        <div class="jsVisualCheckbox checkbox">
-            <input type="checkbox" class="jsRealCheckbox" id="check1" />
-            <i></i>
-            <label class="label-checkbox" for="check1">Вход в интернет-банк</label>
-        </div>
-        <div class="jsVisualCheckbox checkbox">
-            <input type="checkbox" class="jsRealCheckbox" id="check2" />
-            <i></i>
-            <label class="label-checkbox" for="check2">Неправильный ввод пароля</label>
-        </div>
-        <div class="jsVisualCheckbox checkbox">
-            <input type="checkbox" class="jsRealCheckbox" id="check3" />
-            <i></i>
-            <label class="label-checkbox" for="check3">Блокировка учетной записи</label>
+        <div>
+            <div class="jsVisualCheckbox checkbox">
+                <input type="checkbox" class="jsRealCheckbox" id="check1" />
+                <i></i>
+                <label class="label-checkbox" for="check1">Вход в интернет-банк</label>
+            </div>
+            <div class="jsVisualCheckbox checkbox">
+                <input type="checkbox" class="jsRealCheckbox" id="check2" />
+                <i></i>
+                <label class="label-checkbox" for="check2">Неправильный ввод пароля</label>
+            </div>
+            <div class="jsVisualCheckbox checkbox">
+                <input type="checkbox" class="jsRealCheckbox" id="check3" />
+                <i></i>
+                <label class="label-checkbox" for="check3">Блокировка учетной записи</label>
+            </div>
         </div>
     </div>
     <script type="text/javascript">

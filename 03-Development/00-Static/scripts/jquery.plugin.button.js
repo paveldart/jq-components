@@ -178,7 +178,7 @@
         });
     };
 
-    $.fn.setDisable = function(isDisable){
+    $.fn.setDisableButton = function(isDisable){
         var isDisabled;
 
         return this.each(function () {
