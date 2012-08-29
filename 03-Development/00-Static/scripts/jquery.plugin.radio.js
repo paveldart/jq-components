@@ -7,24 +7,6 @@
     var $d = $().$d;
 
     $.fn.radiobutton = function() {
-        var $this = $(this),
-            length = $this.length,
-            cacheLength = length,
-            wrappers = {};
-
-        for (;length--;) {
-            wrappers[length] = $this[length].parentElement;
-        }
-        length = cacheLength;
-
-//        remove class 'isSelected'
-        function removeClassName(){
-            for (;length--;) {
-                wrappers[length].className = wrappers[length].className.replace( /(?:^|\s)isSelected(?!\S)/g , '' );
-
-            }
-            length = cacheLength;
-        }
 
         return this.each(function(i, object){
             var $this = $(this),
@@ -49,7 +31,7 @@
                 touchend: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
-                    removeClassName();
+                    wrapper.siblings().removeClass('isSelected');
                     wrapper.addClass('isSelected');
                     trueRadio.checked = true;
                 },
@@ -79,7 +61,7 @@
 //            click
             wrapper.click(function() {
                 if(!trueRadio.checked) {
-                    removeClassName();
+                    wrapper.siblings().removeClass('isSelected');
                     wrapper.addClass('isSelected');
                     trueRadio.checked = true;
                 }
