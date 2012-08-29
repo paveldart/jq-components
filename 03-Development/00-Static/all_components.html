@@ -89,25 +89,33 @@
 
             $('.jsTextarea, .jsRealInput').placeholder();
 
-            $('.jsAnimateLabel').placeholder(true, animateOnPlaceholder(), animateOffPlaceholder());
-
-            function animateOnPlaceholder(){
-                $('.jsAnimateLabel').on({
-                    focus: function(){
-                        $(this).next('label').addClass('isReduced');
-                    }
-                });
+            function hidePlaceholder(placeholder){
+                placeholder.addClass('isReduced');
+            }
+            function showPlaceholder(placeholder){
+                placeholder.removeClass('isReduced');
             }
 
-            function animateOffPlaceholder(){
-                $('.jsAnimateLabel').on({
-                    blur: function(){
-                        if ($(this)[0].value.length === 0) {
-                            $(this).next('label').removeClass('isReduced');
-                        }
-                    }
-                });
-            }
+            $('.jsAnimateLabel').placeholder(true, showPlaceholder, hidePlaceholder);
+
+
+//            function animateOnPlaceholder(){
+//                $('.jsAnimateLabel').on({
+//                    focus: function(){
+//                        $(this).next('label').addClass('isReduced');
+//                    }
+//                });
+//            }
+//
+//            function animateOffPlaceholder(){
+//                $('.jsAnimateLabel').on({
+//                    blur: function(){
+//                        if ($(this)[0].value.length === 0) {
+//                            $(this).next('label').removeClass('isReduced');
+//                        }
+//                    }
+//                });
+//            }
 
             $(".jsRealCheckbox").ischeckbox();
 
