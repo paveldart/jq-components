@@ -10,6 +10,7 @@
 
         return this.each(function(){
             var $this = $(this),
+                trueTextarea = $this[0],
                 wrapper = $this.parent(),
                 isPressed = false,
                 isFocused = false,
@@ -24,13 +25,13 @@
                 span = wrapper.find('span')[0];
 
                 if (area.addEventListener) {
-                    area.addEventListener('input', function() {
+                    area.addEventListener('input', function(){
                         span.textContent = area.value;
                     }, false);
                     span.textContent = area.value;
                 } else if (area.attachEvent) {
                     // IE8 compatibility
-                    area.attachEvent('onpropertychange', function() {
+                    area.attachEvent('onpropertychange', function(){
                         span.innerText = area.value;
                     });
                     span.innerText = area.value;
@@ -39,22 +40,26 @@
             }
 
             wrapper.on({
-                mouseenter: function() {
-                    isHover = true;
-                    wrapper.addClass('isHover');
+                mouseenter: function(){
+                    if (!trueTextarea.disabled){
+                        isHover = true;
+                        wrapper.addClass('isHover');
+                    }
                 },
-                mouseleave: function() {
+                mouseleave: function(){
                     isHover = false;
                     wrapper.removeClass('isHover');
                 }
             });
 
             wrapper.children('textarea').on({
-                focus: function () {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
+                focus: function(){
+                    if (!trueTextarea.disabled){
+                        isFocused = true;
+                        wrapper.addClass('isFocused');
+                    }
                 },
-                blur: function () {
+                blur: function(){
                     isFocused = false;
                     wrapper.removeClass('isFocused').removeClass('isPressed');
                 }

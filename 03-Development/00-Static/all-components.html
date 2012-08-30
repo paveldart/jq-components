@@ -56,6 +56,14 @@
                 $('.jsRealInput').setDisable(false);
             });
 
+            $('#addDisableChekcboxRadio').click(function(){
+                $('.jsRealRadio, .jsRealCheckbox').setDisable(true);
+            });
+
+            $('#removeDisableChekcboxRadio').click(function(){
+                $('.jsRealRadio, .jsRealCheckbox').setDisable(false);
+            });
+
             $('.jsRealInput').input();
 
             $('.jsTextarea, .jsRealInput').placeholder();
@@ -69,7 +77,6 @@
 
             function animateTopPlaceholder(){
                 this.removeClass('isReduced');
-
             }
 
             $(".jsRealCheckbox").ischeckbox();
@@ -170,6 +177,14 @@
         </div>
 
         <h3>Radio</h3>
+        <div class="jsVisualButton cancel-button">
+            <input type="button" class="jsRealButton" id="addDisableChekcboxRadio" />
+            <span>навесить disable</span>
+        </div>
+        <div class="jsVisualButton default-button">
+            <input type="button" class="jsRealButton" id="removeDisableChekcboxRadio" />
+            <span>снять disable</span>
+        </div>
         <div>
             <div class="jsVisualRadio radio">
                 <input type="radio" name="radio" class="jsRealRadio" id="radio1" />

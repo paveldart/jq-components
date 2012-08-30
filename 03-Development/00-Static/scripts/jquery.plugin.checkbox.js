@@ -21,79 +21,94 @@
             if(trueCheckbox.checked) {
                 wrapper.addClass('isSelected');
             }
+            if(trueCheckbox.disabled) {
+                wrapper.addClass('isDisabled');
+            }
 
             wrapper.on({
 //                touch
                 touchstart: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    wrapper.addClass('isPressed');
+                    if (!trueCheckbox.disabled){
+                        e.preventDefault();
+                        isPressed = true;
+                        wrapper.addClass('isPressed');
+                    }
                 },
                 touchend: function(){
+                    if (!trueCheckbox.disabled) {
+                        wrapper.removeClass('isPressed');
+                        isPressed = false;
+                        if(!trueCheckbox.checked) {
+                            wrapper.addClass('isSelected');
+                            trueCheckbox.checked = true;
+                        } else {
+                            wrapper.removeClass('isSelected');
+                            trueCheckbox.checked = false;
+                        }
+                    }
+                },
+//                pressed
+                mousedown: function(e){
+                    if (!trueCheckbox.disabled){
+                        e.preventDefault();
+                        isPressed = true;
+                        wrapper.addClass('isPressed');
+                        wrapper.mouseleave(function() {
+                            wrapper.removeClass('isPressed');
+                        });
+                    }
+                },
+                mouseup: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
-                    if(!trueCheckbox.checked) {
+                },
+//                hover
+                mouseenter: function(){
+                    if (!trueCheckbox.disabled){
+                        isHover = true;
+                        wrapper.addClass('isHover');
+                    }
+                },
+                mouseleave: function(){
+                    isHover = false;
+                    wrapper.removeClass('isHover');
+                }
+            });
+//            focus (в 'on' не работает)
+            $this.focus(function(){
+                if (!trueCheckbox.disabled){
+                    isFocused = true;
+                    wrapper.addClass('isFocused');
+                }
+            });
+            $this.blur(function(){
+                wrapper.removeClass('isFocused');
+                isFocused = false;
+            });
+//            click
+            wrapper.toggle(function(){
+                if (!trueCheckbox.disabled){
+                    if (!trueCheckbox.checked){
                         wrapper.addClass('isSelected');
                         trueCheckbox.checked = true;
                     } else {
                         wrapper.removeClass('isSelected');
                         trueCheckbox.checked = false;
                     }
-                },
-//                pressed
-                mousedown: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    wrapper.addClass('isPressed');
-                    wrapper.mouseleave(function() {
-                        wrapper.removeClass('isPressed');
-                    });
-                },
-                mouseup: function() {
-                    wrapper.removeClass('isPressed');
-                    isPressed = false;
-                },
-//                hover
-                mouseenter: function() {
-                    isHover = true;
-                    wrapper.addClass('isHover');
-                },
-                mouseleave: function() {
-                    isHover = false;
-                    wrapper.removeClass('isHover');
+                    $this.focus();
                 }
-            });
-//            focus (в 'on' не работает)
-            $this.focus(function() {
-                isFocused = true;
-                wrapper.addClass('isFocused');
-            });
-            $this.blur(function() {
-                wrapper.removeClass('isFocused');
-                isFocused = false;
-            });
-//            click
-            wrapper.toggle(function() {
-                if (!trueCheckbox.checked) {
-                    wrapper.addClass('isSelected');
-                    trueCheckbox.checked = true;
-                } else {
-                    wrapper.removeClass('isSelected');
-                    trueCheckbox.checked = false;
-                }
-                $this.focus();
             },function() {
-                if (trueCheckbox.checked) {
-                    wrapper.removeClass('isSelected');
-                    trueCheckbox.checked = false;
-                } else {
-                    wrapper.addClass('isSelected');
-                    trueCheckbox.checked = true;
+                if (!trueCheckbox.disabled){
+                    if (trueCheckbox.checked){
+                        wrapper.removeClass('isSelected');
+                        trueCheckbox.checked = false;
+                    } else {
+                        wrapper.addClass('isSelected');
+                        trueCheckbox.checked = true;
+                    }
+                    $this.focus();
                 }
-                $this.focus();
             });
-
-
 
 
             function keyDown(e, code){

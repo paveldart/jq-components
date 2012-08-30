@@ -4,11 +4,10 @@
  */
 
 (function($){
-    var $d = $().$d;
 
     $.fn.radiobutton = function() {
 
-        return this.each(function(i, object){
+        return this.each(function(){
             var $this = $(this),
                 wrapper = $this.parent(),
                 trueRadio = $this[0],
@@ -20,47 +19,58 @@
             if(trueRadio.checked) {
                 wrapper.addClass('isSelected');
             }
+            if(trueRadio.disabled) {
+                wrapper.addClass('isDisabled');
+            }
 
             wrapper.on({
 //                touch
                 touchstart: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    wrapper.addClass('isPressed');
+                    if (!trueRadio.disabled){
+                        e.preventDefault();
+                        isPressed = true;
+                        wrapper.addClass('isPressed');
+                    }
                 },
                 touchend: function(){
-                    wrapper.removeClass('isPressed');
-                    isPressed = false;
-                    wrapper.siblings().removeClass('isSelected');
-                    wrapper.addClass('isSelected');
-                    trueRadio.checked = true;
+                    if (!trueRadio.disabled){
+                        wrapper.removeClass('isPressed');
+                        isPressed = false;
+                        wrapper.siblings().removeClass('isSelected');
+                        wrapper.addClass('isSelected');
+                        trueRadio.checked = true;
+                    }
                 },
 //                pressed
-                mousedown: function(e) {
-                    e.preventDefault();
-                    isPressed = true;
-                    wrapper.addClass('isPressed');
-                    wrapper.mouseleave(function() {
-                        wrapper.removeClass('isPressed');
-                    });
+                mousedown: function(e){
+                    if (!trueRadio.disabled){
+                        e.preventDefault();
+                        isPressed = true;
+                        wrapper.addClass('isPressed');
+                        wrapper.mouseleave(function() {
+                            wrapper.removeClass('isPressed');
+                        });
+                    }
                 },
-                mouseup: function() {
+                mouseup: function(){
                     wrapper.removeClass('isPressed');
                     isPressed = false;
                 },
 //                hover
-                mouseenter: function() {
-                    isHover = true;
-                    wrapper.addClass('isHover');
+                mouseenter: function(){
+                    if (!trueRadio.disabled){
+                        isHover = true;
+                        wrapper.addClass('isHover');
+                    }
                 },
-                mouseleave: function() {
+                mouseleave: function(){
                     isHover = false;
                     wrapper.removeClass('isHover');
                 }
             });
 //            click
-            wrapper.click(function() {
-                if(!trueRadio.checked) {
+            wrapper.click(function(){
+                if((!trueRadio.checked) && (!trueRadio.disabled)){
                     $this.focus();
                     wrapper.siblings().removeClass('isSelected').removeClass('isFocused');
                     wrapper.addClass('isSelected').addClass('isFocused');
@@ -68,12 +78,14 @@
                 }
             });
 //            focus (в 'on' не работает)
-            $this.focus(function() {
-                isFocused = true;
-                wrapper.siblings().removeClass('isSelected');
-                wrapper.addClass('isSelected').addClass('isFocused');
+            $this.focus(function(){
+                if (!trueRadio.disabled){
+                    isFocused = true;
+                    wrapper.siblings().removeClass('isSelected');
+                    wrapper.addClass('isSelected').addClass('isFocused');
+                }
             });
-            $this.blur(function() {
+            $this.blur(function(){
                 wrapper.removeClass('isFocused');
                 isFocused = false;
             });

@@ -482,13 +482,13 @@ input.jsRealButton {
     background: url("../images/ui.png") no-repeat scroll -141px -35px transparent;
     }
 .checkbox.isHover i {
-    border: 1px solid #999;
+    border-color: #999;
     }
 .checkbox.isFocused i {
-    border: 1px solid #20B0E6;
+    border-color: #20B0E6;
     }
 .checkbox.isSelected label {
-    color: #20B0E6;
+    color: #333;
     }
 
 /*radio */
@@ -525,11 +525,11 @@ input.jsRealButton {
     background: url("../images/ui.png") no-repeat scroll -12px -35px transparent;
     }
 .radio.isHover i {
-    border: 1px solid #999;
+    border-color: #999;
     }
 .radio.isFocused i {
-    border: 1px solid #20B0E6;
+    border-color: #20B0E6;
     }
 .radio.isSelected label {
-    color: #20B0E6;
+    color: #333;
     }
