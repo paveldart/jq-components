@@ -13,25 +13,27 @@
                 isFocused = false,
                 isHover = false;
 
-            $this
+            $this.on({
 //                hover
-                .on('mouseenter', function() {
+                mouseenter: function() {
                     isHover = true;
                     wrapper.addClass('isHover');
-                })
-                .on('mouseleave', function() {
+                },
+                mouseleave: function() {
                     isHover = false;
                     wrapper.removeClass('isHover');
-                })
+                },
 //                focus
-                .on('focus', function() {
+                focus: function() {
                     isFocused = true;
                     wrapper.addClass('isFocused');
-                })
-                .on('blur', function() {
+                },
+                blur: function() {
                     isFocused = false;
                     wrapper.removeClass('isFocused').removeClass('isPressed');
-                });
+                }
+            });
+//
         });
     };
 
