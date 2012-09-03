@@ -86,7 +86,6 @@
             $(".jsRealRadio").radiobutton();
 
             $('#paymentAmount').paymentAmount();
-            $('#paymentAmountCss').paymentAmountCss();
         });
     </script>
 
@@ -241,7 +240,6 @@
             </div>
         </div>
         <h3>Ввод суммы (для Single)</h3>
-        <h3>Анимация кнопок валюты на jQ:</h3>
         <div class="payment-amount-scale-values-wrapper">
             <div class="payment-amount-scale-values">
                 <div class="jsVisualInput">
@@ -273,64 +271,17 @@
                 </a>
             </div>
             <div class="currency-change-button">
-                <div class="currency-change-button-wrapper">
-                    <a class="currency-button currency-button-first currency-current">
+                <div class="currency-change-button-wrapper isOpened_4">
+                    <a class="currency-button currency-button-first">₣</a>
+                    <a class="currency-button">£</a>
+                    <a class="currency-button">€</a>
+                    <a class="currency-button">$</a>
+                    <a class="currency-button currency-button-last currency-current">
                         <span class="rub">⃏</span>
                     </a>
-                    <a class="currency-button">$</a>
-                    <a class="currency-button">€</a>
-                    <a class="currency-button">£</a>
-                    <a class="currency-button currency-button-last">₣</a>
-                </div>
-            </div>
-        </div>
-        <h3>Анимация кнопок валюты на CSS:</h3>
-        <div class="payment-amount-scale-values-wrapper payment-amount-css">
-            <div class="payment-amount-scale-values">
-                <div class="jsVisualInput">
-                    <input type="text" class="jsRealInput" id="paymentAmountCss">
-                    <label class="placeholder">Сумма ввода</label>
-                    <div class="payment-amount-select-wrapper">
-                        <div class="payment-amount-select"></div>
-                    </div>
-                </div>
-                <a class="payment-amount-value payment-amount-value-first">
-                    500
-                    <span class="rub">⃏</span>
-                </a>
-                <a class="payment-amount-value">
-                    1000
-                    <span class="rub">⃏</span>
-                </a>
-                <a class="payment-amount-value">
-                    3000
-                    <span class="rub">⃏</span>
-                </a>
-                <a class="payment-amount-value">
-                    5000
-                    <span class="rub">⃏</span>
-                </a>
-                <a class="payment-amount-value payment-amount-value-last">
-                    10000
-                    <span class="rub">⃏</span>
-                </a>
-            </div>
-            <div class="currency-change-button">
-                <div class="currency-change-button-wrapper">
-                    <a class="currency-button currency-button-first currency-current">
-                        <span class="rub">⃏</span>
-                    </a>
-                    <a class="currency-button">$</a>
-                    <a class="currency-button">€</a>
-                    <a class="currency-button">£</a>
-                    <a class="currency-button currency-button-last">₣</a>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
-
-    </script>
 </body>
 </html>
