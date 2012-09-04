@@ -30,7 +30,7 @@
         $(function() {
             $('.jsTextarea').textarea();
 
-            $('#textAreaResize').textarea(true);
+            $('#textAreaResize_1, #textAreaResize_2').textarea(true);
 
             $('#addDisableTextarea').click(function(){
                 $('.jsTextarea').setDisable(true);
@@ -143,14 +143,25 @@
         </div>
         <h3>Textarea</h3>
         <div class="textarea">
-            <textarea class="jsTextarea" id="textArea">Watch me expand to encompass your every word!</textarea>
-            <label for="textArea" class="placeholder">Введите много текста</label>
+            <textarea class="jsTextarea" id="textArea_1">Watch me expand to encompass your every word!</textarea>
+            <label for="textArea_1" class="placeholder">Введите много текста</label>
+        </div>
+
+        <div class="textarea">
+            <textarea class="jsTextarea" id="textArea_2" style="height: 200px;">style="height: 200px;"</textarea>
+            <label for="textArea_2" class="placeholder">Введите много текста</label>
         </div>
 
         <h3>Textarea resize</h3>
         <div class="textarea">
-            <textarea class="jsTextarea" id="textAreaResize">Watch me expand to encompass your every word!</textarea>
-            <label for="textAreaResize" class="placeholder">Введите много текста</label>
+            <textarea class="jsTextarea" id="textAreaResize_1">Watch me expand to encompass your every word!</textarea>
+            <label for="textAreaResize_1" class="placeholder">Введите много текста</label>
+        </div>
+
+        <!-- задавать высоту через style в ресайзяшейся текстареи нужно как в текстарии, так и в оболочке! -->
+        <div class="textarea" style="min-height: 150px;">
+            <textarea class="jsTextarea" id="textAreaResize_2" style="min-height: 150px;">style="min-height: 150px;"</textarea>
+            <label for="textAreaResize_2" class="placeholder">Введите много текста</label>
         </div>
 
         <h3>Кнопки-ссылки и кнопки в форме</h3>
