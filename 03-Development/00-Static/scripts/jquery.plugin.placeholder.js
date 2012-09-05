@@ -17,9 +17,9 @@
                 textarea = wrapper.children('textarea')[0],
                 placeholder = wrapper.children('label'),
                 inputOrTextarea = input || textarea,
+                casheValue = inputOrTextarea.value,
                 isVisible = false,
                 keyCode;
-
 
             if (isOnFocus) {
                 placeholder[0].focused = true;
@@ -43,10 +43,10 @@
                 });
             }
             else {
-                $this.on({
-                    keydown: hiddenPlaceholder,
-                    keyup: visiblePlaceholder
-                });
+//                $this.on({
+////                    событие textchange
+//                    textchange: hiddenOrShowPlaceholder
+//                });
             }
 
 //            check value & state
@@ -67,41 +67,35 @@
                 }
             }
 
-//            todo в одну функцию
-            function hiddenPlaceholder(e){
-                keyCode = e.keyCode || e.which;
-                if (keyCode !== 9) {
+            setInterval(function(){
+
+                if (($this.val() !== casheValue) && ($this.val() !== '')) {
                     if (isVisible && !placeholder[0].focused) {
                         placeholder.addClass('noVisible');
                         isVisible = false;
                     }
                 }
-            }
-
-            function visiblePlaceholder(e) {
-                keyCode = e.keyCode || e.which;
-                if (keyCode !== 9) {
-                    if(!isVisible) {
-                        if ((inputOrTextarea !== undefined) && (inputOrTextarea.value.length === 0)){
-                            placeholder.removeClass('noVisible');
-                            isVisible = true;
-                        }
-                    }
+                else if ($this.val() === ''){
+                    placeholder.removeClass('noVisible');
+                    isVisible = true;
                 }
-            }
+            }, 0);
 
-//            function hiddenOrVisiblePlaceholder(){
-//                if (inputOrTextarea.value.length > 0){
-//                    placeholder.addClass('noVisible');
-//                    isVisible = false;
-//                }
-//                else if (inputOrTextarea.value.length === 0){
-//                    placeholder.removeClass('noVisible');
-//                    isVisible = true;
+//            function hiddenOrShowPlaceholder(e){
+//                keyCode = e.keyCode || e.which;
+//                if ((keyCode !== 9) &&(keyCode !== 13)) {
+//                    if (isVisible && !placeholder[0].focused) {
+//                        placeholder.addClass('noVisible');
+//                        isVisible = false;
+//                    }
+//                    else if(!isVisible) {
+//                        if ((inputOrTextarea !== undefined) && (inputOrTextarea.value.length === 0)){
+//                            placeholder.removeClass('noVisible');
+//                            isVisible = true;
+//                        }
+//                    }
 //                }
 //            }
-
-
         });
     };
 }(jQuery));

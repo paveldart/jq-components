@@ -18,12 +18,17 @@
                 isKeyDown = false;
 
 //            check default value
-            if(trueCheckbox.checked) {
-                wrapper.addClass('isSelected');
-            }
             if(trueCheckbox.disabled) {
                 wrapper.addClass('isDisabled');
             }
+
+            setInterval(function(){
+                if (trueCheckbox.checked){
+                    wrapper.addClass('isSelected');
+                } else if (!trueCheckbox.checked) {
+                    wrapper.removeClass('isSelected');
+                }
+            }, 0);
 
             wrapper.on({
 //                touch
@@ -39,10 +44,8 @@
                         wrapper.removeClass('isPressed');
                         isPressed = false;
                         if(!trueCheckbox.checked) {
-                            wrapper.addClass('isSelected');
                             trueCheckbox.checked = true;
-                        } else {
-                            wrapper.removeClass('isSelected');
+                        } else if(trueCheckbox.checked) {
                             trueCheckbox.checked = false;
                         }
                     }
@@ -89,10 +92,8 @@
             wrapper.toggle(function(){
                 if (!trueCheckbox.disabled){
                     if (!trueCheckbox.checked){
-                        wrapper.addClass('isSelected');
                         trueCheckbox.checked = true;
-                    } else {
-                        wrapper.removeClass('isSelected');
+                    } else if(trueCheckbox.checked) {
                         trueCheckbox.checked = false;
                     }
                     $this.focus();
@@ -100,27 +101,22 @@
             },function() {
                 if (!trueCheckbox.disabled){
                     if (trueCheckbox.checked){
-                        wrapper.removeClass('isSelected');
                         trueCheckbox.checked = false;
-                    } else {
-                        wrapper.addClass('isSelected');
+                    } else if(!trueCheckbox.checked) {
                         trueCheckbox.checked = true;
                     }
                     $this.focus();
                 }
             });
 
-
             function keyDown(e, code){
                 if (code === 32){
                     e.preventDefault();
                     e.stopPropagation();
                     if (!trueCheckbox.checked) {
-                        wrapper.addClass('isSelected');
                         trueCheckbox.checked = true;
                         isKeyDown = true;
                     } else if (trueCheckbox.checked) {
-                        wrapper.removeClass('isSelected');
                         trueCheckbox.checked = false;
                         isKeyDown = false;
                     }

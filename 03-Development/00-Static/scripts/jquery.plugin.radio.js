@@ -16,16 +16,23 @@
                 isHover = false;
 
 //            check default value
-            if(trueRadio.checked) {
-                wrapper.addClass('isSelected');
-            }
-            if(trueRadio.disabled) {
+            if (trueRadio.disabled) {
                 wrapper.addClass('isDisabled');
             }
 
+            setInterval(function(){
+                if (!trueRadio.disabled){
+                    if (trueRadio.checked){
+                        wrapper.siblings('.jsVisualRadio').removeClass('isSelected').removeClass('isFocused');
+                        wrapper.addClass('isSelected');
+                    }
+
+                }
+            }, 0);
+
             wrapper.on({
 //                touch
-                touchstart: function(e) {
+                touchstart: function(e){
                     if (!trueRadio.disabled){
                         e.preventDefault();
                         isPressed = true;
@@ -36,8 +43,7 @@
                     if (!trueRadio.disabled){
                         wrapper.removeClass('isPressed');
                         isPressed = false;
-                        wrapper.siblings().removeClass('isSelected');
-                        wrapper.addClass('isSelected');
+                        $this.focus();
                         trueRadio.checked = true;
                     }
                 },
@@ -72,8 +78,6 @@
             wrapper.click(function(){
                 if((!trueRadio.checked) && (!trueRadio.disabled)){
                     $this.focus();
-                    wrapper.siblings().removeClass('isSelected').removeClass('isFocused');
-                    wrapper.addClass('isSelected').addClass('isFocused');
                     trueRadio.checked = true;
                 }
             });
@@ -81,7 +85,7 @@
             $this.focus(function(){
                 if (!trueRadio.disabled){
                     isFocused = true;
-                    wrapper.siblings().removeClass('isSelected');
+                    wrapper.siblings('.jsVisualRadio').removeClass('isSelected');
                     wrapper.addClass('isSelected').addClass('isFocused');
                 }
             });

@@ -9,6 +9,7 @@
         return this.each(function () {
             var $this = $(this),
                 wrapper = $this.parent(),
+                trueInput = $this[0],
                 isPressed = false,
                 isFocused = false,
                 isHover = false;
@@ -16,8 +17,10 @@
             $this.on({
 //                hover
                 mouseenter: function() {
-                    isHover = true;
-                    wrapper.addClass('isHover');
+                    if (!trueInput.disabled){
+                        isHover = true;
+                        wrapper.addClass('isHover');
+                    }
                 },
                 mouseleave: function() {
                     isHover = false;
@@ -25,8 +28,10 @@
                 },
 //                focus
                 focus: function() {
-                    isFocused = true;
-                    wrapper.addClass('isFocused');
+                    if (!trueInput.disabled){
+                        isFocused = true;
+                        wrapper.addClass('isFocused');
+                    }
                 },
                 blur: function() {
                     isFocused = false;

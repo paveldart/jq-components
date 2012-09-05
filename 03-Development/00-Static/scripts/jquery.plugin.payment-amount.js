@@ -12,6 +12,7 @@
         return this.each(function () {
             var $this = $(this),
                 wrapper = $this.parent(),
+                trueInput = $this[0],
                 paymentAmountWrapper = wrapper.parent().parent(),
                 paymentAmountValues = paymentAmountWrapper.find('.payment-amount-value'),
                 paymentAmountSlider = wrapper.children('.payment-amount-select-wrapper'),
@@ -23,91 +24,54 @@
                 activeValue = 0,
                 slideRight;
 
+//            проверка на CSS-Transitions
             if ($d.isTransitions) {
                 paymentAmountWrapper.addClass('payment-amount-css');
             }
 
-//            ползунок
-            $this.on({
-                keyup: function(){
-                    switch($this.val()){
-                        case '500':
-                            sliderLeft = '0';
-                            activeValue = 0;
-                            paymentAmountSlider.addClass('isVisible');
-                            break;
-                        case '1000':
-                            sliderLeft = '-13px';
-                            activeValue = 1;
-                            paymentAmountSlider.addClass('isVisible');
-                            break;
-                        case '3000':
-                            sliderLeft = '-13px';
-                            activeValue = 2;
-                            paymentAmountSlider.addClass('isVisible');
-                            break;
-                        case '5000':
-                            sliderLeft = '-13px';
-                            activeValue = 3;
-                            paymentAmountSlider.addClass('isVisible');
-                            break;
-                        case '10000':
-                            sliderLeft = '-35px';
-                            activeValue = 4;
-                            paymentAmountSlider.addClass('isVisible');
-                            break;
-                        default:
-                            paymentAmountSlider.removeClass('isVisible');
-                            paymentAmountValues.removeClass('isActive');
-                            break;
-                    }
-
-                    sliderMargin = (25*activeValue)+'%';
-                    paymentAmountSlider.animate({
-                        'left': sliderLeft,
-                        'margin-left': sliderMargin
-                    })
+//            проверка состояния инпута и анимация ползунка
+            setInterval(function(){
+                if (trueInput.value === '500') {
+                    sliderLeft = '0';
+                    activeValue = 0;
+                    paymentAmountSlider.addClass('isVisible');
+                } else if (trueInput.value === '1000') {
+                    sliderLeft = '-13px';
+                    activeValue = 1;
+                    paymentAmountSlider.addClass('isVisible');
+                } else if (trueInput.value === '3000') {
+                    sliderLeft = '-13px';
+                    activeValue = 2;
+                    paymentAmountSlider.addClass('isVisible');
+                } else if (trueInput.value === '5000') {
+                    sliderLeft = '-13px';
+                    activeValue = 3;
+                    paymentAmountSlider.addClass('isVisible');
+                } else if (trueInput.value === '10000') {
+                    sliderLeft = '-35px';
+                    activeValue = 4;
+                    paymentAmountSlider.addClass('isVisible');
                 }
-            });
-
-            paymentAmountValues.on('click', function(){
-                var $this = $(this),
-                    placeholder = wrapper.children('label'),
-                    paymentValue = parseInt($this.html()),
-                    siblings = $this.parent().children('.payment-amount-value');
-
-                activeValue = 0;
-
-                for(activeValue; activeValue < siblings.length; activeValue++){
-                    if ($this[0] === siblings[activeValue]) {
-                        break;
-                    }
-                }
-
-                switch(activeValue){
-                    case 0:
-                        sliderLeft = '0';
-                        break;
-                    case (siblings.length - 1):
-                        sliderLeft = '-35px';
-                        break;
-                    default:
-                        sliderLeft = '-13px';
-                        break;
+                else {
+                    paymentAmountSlider.removeClass('isVisible');
+                    paymentAmountValues.removeClass('isActive');
                 }
 
                 sliderMargin = (25*activeValue)+'%';
 
-                $this.siblings().removeClass('isActive');
-                $this.addClass('isActive');
-
-                placeholder.addClass('noVisible');
-                paymentAmountSlider.addClass('isVisible');
-                wrapper.children('.jsRealInput').val(paymentValue);
                 paymentAmountSlider.animate({
                     'left': sliderLeft,
                     'margin-left': sliderMargin
                 })
+            }, 500);
+
+            paymentAmountValues.on({
+                click: function(){
+                    trueInput.value = parseInt($(this).html()) + '';
+                },
+                touchend: function(){
+                    trueInput.value = parseInt($(this).html()) + '';
+                }
             });
 
 
@@ -115,7 +79,7 @@
             currencyChangeButtons.toggle(function(){
                 var $this = $(this);
 
-//            проверка: если браузер не поддерживает CSS-Transitions, то анимируем с помощью jQ
+//                проверка: если браузер не поддерживает CSS-Transitions, то анимируем с помощью jQ
                 if ($d.isTransitions) {
                     $this.addClass('isOpened');
                     currencyWrapperButtons.removeClass('isOpened_0')
