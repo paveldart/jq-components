@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg version="1.1"
+     baseProfile="full"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events"
+     width="100%" height="100%">
+
+    <path fill="none" stroke="white" stroke-width="15" d="M150,50 A100,100 0 1,0 151,50 z" transform="scale(1.5)" />
+
+
+    <!--круги для проверки координат-->
+    <circle cx="150" cy="150" r="110" fill="#ddd" transform="scale(1.5)"/>
+    <circle cx="150" cy="150" r="89" fill="white" transform="scale(1.5)"/>
+
+    <path fill="none" stroke="#daf4ff" stroke-width="15" d="M150,50 A100,100 0 0,0 75,84.5" transform="scale(1.5)" />
+    <path fill="none" stroke="#b3e9ff" stroke-width="15" d="M74,85 A100,100 0 0,0 79.5,220" transform="scale(1.5)" />
+    <path fill="none" stroke="#73d7ff" stroke-width="15" d="M80,221 A100,100 0 0,0 236.5,200" transform="scale(1.5)" />
+    <path fill="none" stroke="#18b8f8" stroke-width="15" d="M237,199 A100,100 0 0,0 151,50" transform="scale(1.5)" />
+
+</svg>
