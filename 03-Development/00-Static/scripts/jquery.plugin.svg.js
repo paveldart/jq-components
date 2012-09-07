@@ -37,11 +37,11 @@
 
             if (window.ellipticalObject !== undefined) {
                 localEllipticalObject = window.ellipticalObject;
-                iMax = localEllipticalObject.length;
+                iMax = localEllipticalObject.length / 2;
             }
 
             for (i; i < iMax; i+=1) {
-                a = (localEllipticalObject[i][0] * 360) / 100; // считаем центральный угол
+                a = (localEllipticalObject[2*i] * 360) / 100; // считаем центральный угол
                 cacheA += a;
 
 //                расчеты для графиков: формула нахождения координатов точки в зависимости от величины центрального угла
@@ -56,7 +56,7 @@
                 cacheX = x0 + (1.5 * r * Math.cos((cacheA - a/2) * pi/180 - pi/2)) - 50/2;
                 cacheY = y0 + (1.5 * r * Math.sin((cacheA - a/2) * pi/180 - pi/2)) - 50/2;
                 trueSvgImage = $this.children('g').children('image')[i];
-                trueSvgImage.setAttribute('xlink:href', localEllipticalObject[i][1]);
+                trueSvgImage.setAttribute('xlink:href', localEllipticalObject[2*i + 1]);
                 trueSvgImage.setAttribute('x', cacheX);
                 trueSvgImage.setAttribute('y', cacheY);
 
@@ -64,7 +64,7 @@
                 cacheX = x0 + (0.7 * r * Math.cos((cacheA - a/2) * pi/180 - pi/2)) - 12;
                 cacheY = y0 + (0.7 * r * Math.sin((cacheA - a/2) * pi/180 - pi/2)) + 7;
                 trueSvgText = $this.children('g').children('text')[i];
-                trueSvgText.textContent = localEllipticalObject[i][0].toFixed() + '%';
+                trueSvgText.textContent = localEllipticalObject[2*i].toFixed() + '%';
                 trueSvgText.setAttribute('x', cacheX);
                 trueSvgText.setAttribute('y', cacheY);
 
@@ -72,7 +72,7 @@
                 cacheY = y;
             }
 
-            x = y = x0 = y0 = cacheX = cacheY = cacheA = null;
+            x = y = x0 = y0 = cacheX = cacheY = cacheA = trueSvgText = trueSvgImage = attrValue = trueSvgPath = null;
         });
     };
 })(jQuery);
