@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Test SVG</title>
+
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+    <link href="styles/payment-amount.css" rel="stylesheet" type="text/css">
+    <style>
+        .container {
+            width: 50%;
+            max-width: 770px;
+            min-width: 300px;
+            margin: 10px;
+            height: 300px;
+            }
+    </style>
+
+    <script src="scripts/jquery1.8.js" type="text/javascript"></script>
+    <script src="scripts/jquery.core.plugins.js" type="text/javascript"></script>
+    <script src="scripts/jquery.core.textchange.js" type="text/javascript"></script>
+    <script src="scripts/jquery.plugin.svg.js" type="text/javascript"></script>
+
+    <script>
+        var ellipticalObject = [
+            [35.4, 'images/user3.png'],
+            [24.6, 'images/user2.png'],
+            [28, 'images/user1.png'],
+            [12, 'images/user4.png']
+        ];
+
+//        var ellipticalObject = [
+//            [35.4, 'images/user3.png'],
+//            [24.6, 'images/user2.png'],
+//            [28, 'images/user1.png'],
+//            [12, 'images/user4.png']
+//        ];
+
+        $(function() {
+            $('.jsSvgElliptical').svgElliptical();
+        });
+    </script>
+
+
+
+</head>
+<body>
+
+    <div class="container">
+
+        <svg class="jsSvgElliptical"
+             version="1.1"
+             baseProfile="full"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:ev="http://www.w3.org/2001/xml-events"
+             width="400" height="400">
+
+            <g>
+                <path fill="none" stroke="#18b8f8" stroke-width="13" />
+                <image width="50" height="50" xlink:href="" />
+                <text font-family="Verdana" font-size="13" fill="#5b5f64"></text>
+            </g>
+
+            <g>
+                <path fill="none" stroke="#73d7ff" stroke-width="13" />
+                <image width="50" height="50" xlink:href="" />
+                <text font-family="Verdana" font-size="13" fill="#5b5f64"></text>
+            </g>
+
+            <g>
+                <path fill="none" stroke="#b3e9ff" stroke-width="13" />
+                <image width="50" height="50" xlink:href="" />
+                <text font-family="Verdana" font-size="13" fill="#5b5f64"></text>
+            </g>
+
+            <g>
+                <path fill="none" stroke="#daf4ff" stroke-width="13" />
+                <image width="50" height="50" xlink:href="" />
+                <text font-family="Verdana" font-size="13" fill="#5b5f64"></text>
+            </g>
+        </svg>
+
+    </div>
+
+
+
+</body>
+</html>
