@@ -12,9 +12,9 @@
     <path fill="none" stroke="white" stroke-width="15" d="M150,50 A100,100 0 1,0 151,50 z" transform="scale(1.5)" />
 
 
-    <!--круги для проверки координат-->
-    <circle cx="150" cy="150" r="110" fill="#ddd" transform="scale(1.5)"/>
-    <circle cx="150" cy="150" r="89" fill="white" transform="scale(1.5)"/>
+    <!-- круги для проверки координат элептических кривых -->
+    <!--<circle cx="150" cy="150" r="110" fill="#ddd" transform="scale(1.5)"/>-->
+    <!--<circle cx="150" cy="150" r="89" fill="white" transform="scale(1.5)"/>-->
 
     <path fill="none" stroke="#daf4ff" stroke-width="15" d="M150,50 A100,100 0 0,0 75,84.5" transform="scale(1.5)" />
     <path fill="none" stroke="#b3e9ff" stroke-width="15" d="M74,85 A100,100 0 0,0 79.5,220" transform="scale(1.5)" />
