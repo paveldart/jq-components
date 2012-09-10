@@ -10,6 +10,9 @@
      xmlns:ev="http://www.w3.org/2001/xml-events"
      width="100%" height="100%">
 
+    <rect x="0" y="0" width="100" height="100"
+          fill="none" stroke="black" stroke-width="5px" stroke-opacity="0.5"/>
+
     <path d="M25,75 Q100,25 175,75 T 325,75 T475, 75 T 625,75"
           style="fill:none; stroke:#68c8f6;stroke-width:3"/>
 </svg>

@@ -10,6 +10,7 @@
                 wrapperHeight = wrapper[0].clientHeight;
 
             trueSvg.setAttribute('viewBox','0 0 ' + wrapperWidth + ' ' + wrapperHeight);
+            $this.children('svg')[0].setAttribute('viewBox','0 0 ' + wrapperWidth + ' ' + wrapperHeight);
         });
     };
 
@@ -30,6 +31,7 @@
                 cacheX = 200, // начальный X графика
                 cacheY = 115,  // начальный Y графика
                 attrValue,
+                concavity, // вогнутость
                 x, // координата точки на окружности по X
                 y, // координата точки на окружности по Y
                 i = 0,
@@ -41,6 +43,7 @@
             }
 
             for (i; i < iMax; i+=1) {
+                localEllipticalObject[2*i] > 50 ? concavity = 1 : concavity = 0;
                 a = (localEllipticalObject[2*i] * 360) / 100; // считаем центральный угол
                 cacheA += a;
 
@@ -48,7 +51,7 @@
                 x = x0 + (r * Math.cos(cacheA * pi/180 - pi/2));
                 y = y0 + (r * Math.sin(cacheA * pi/180 - pi/2));
                 trueSvgPath = $this.children('g').children('path')[i];
-                attrValue = 'M' + cacheX + ',' + cacheY + ' A85,85 0 0,1 ' + x + ',' + y;
+                attrValue = 'M' + cacheX + ',' + cacheY + ' A85,85 0 ' + concavity + ',1 ' + x + ',' + y;
                 trueSvgPath.setAttribute('d', attrValue);
 
 
