@@ -44,11 +44,11 @@
             $('.jsRealButton').button();
 
             $('.addDisabledButton').click(function(){
-                $('.disableButton').setDisableButton(true);
+                $('.disableButton').button('disable', true);
             });
 
             $('.removeDisabledButton').click(function(){
-                $('.disableButton').setDisableButton(false);
+                $('.disableButton').button('disable', false);
             });
 
             $('#addDisableInput').click(function(){
