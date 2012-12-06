@@ -37,21 +37,13 @@
                     }
 
 //                    check default values
-                    if (realButton.disabled || realButton.isDisabled) {
+                    if (realButton.disabled || isDisabled) {
                         wrapper.addClass('isDisabled');
                         blur();
-                        if (!$d.isOldIE) {
-                            realButton.isDisabled = isDisabled = true;
-                        } else {
-                            isDisabled = true;
-                        }
+                        isDisabled = true;
                     } else {
                         wrapper.removeClass('isDisabled');
-                        if (!$d.isOldIE) {
-                            realButton.isDisabled = isDisabled = false;
-                        } else {
-                            isDisabled = false;
-                        }
+                        isDisabled = false;
                     }
 
 //                    action
@@ -107,7 +99,7 @@
 //                    touch function
                     function touchStart(e){
                         e.preventDefault();
-                        if (!realButton.isDisabled){
+                        if (!isDisabled){
                             isPressed = true;
                             if (!isFocused){
                                 $this.focus();
@@ -116,7 +108,7 @@
                         }
                     }
                     function touchEnd(e){
-                        if (!realButton.isDisabled && isPressed){
+                        if (!isDisabled && isPressed){
                             isPressed = false;
                             removePress();
                             action(e);
@@ -126,7 +118,7 @@
 //                    mouse function
                     function mouseDown(e){
                         e.preventDefault();
-                        if (!realButton.isDisabled && (e.button !== 2)){
+                        if (!isDisabled && (e.button !== 2)){
                             isPressed = true;
                             if (!isFocused){
                                 $this.focus();
@@ -135,7 +127,7 @@
                         }
                     }
                     function mouseUp(e){
-                        if (!realButton.isDisabled && (e.button !== 2)){
+                        if (!isDisabled && (e.button !== 2)){
                             isPressed = false;
                             if (!isKeyDown){
                                 removePress();
@@ -148,13 +140,17 @@
                         isPressed = false;
                     }
 
-                    function mouseEnter(){
-                        if (!realButton.isDisabled) {
+                    function mouseEnter(e){
+                        if (!isDisabled) {
                             wrapper.addClass('isHover');
                             isHover = true;
+                            if (isPressed) {
+                                wrapper.addClass('isPressed');
+                            }
                         }
                     }
                     function mouseLeave(){
+                        removePress();
                         wrapper.removeClass('isHover');
                         isHover = false;
                     }
@@ -177,7 +173,7 @@
                     }
                     function commonKeyDown(e){
                         if ((e.keyCode === 9) && $d.isOldIE){
-                            if (!realButton.isDisabled) {
+                            if (!isDisabled) {
                                 wrapper.removeClass('isFocused').removeClass('isPressed');
                                 isFocused = false;
                             }
@@ -226,48 +222,30 @@
 
                     $this.on('focus', focus);
                     $this.on('blur', commonBlur);
-                });
-            },
 
-            disable: function(isDisable){
-                return this.each(function() {
-                    var $this = $(this),
-                        realButton = $this[0],
-                        visualButton,
-                        wrapper,
-                        isDisabled = false;
-
-//                    visualButton search
-                    if ($this.closest('.jsVisualButton')[0] !== u) {
-                        visualButton = $this.closest('.jsVisualButton');
-                    }
-
-//                    wrapper search
-                    if (visualButton.closest('.jsButtonWrapper')[0] !== u) {
-                        wrapper = visualButton.closest('.jsButtonWrapper');
-                    } else {
-                        wrapper = visualButton;
-                    }
-
-                    function disabled(isDisable){
+                    realButton.setDisable = function(isDisable){
                         if (isDisable){
                             realButton.setAttribute('disabled', 'disabled');
                             wrapper.addClass('isDisabled')
-                                   .removeClass('isPressed')
-                                   .removeClass('isHover')
-                                   .removeClass('isFocused');
+                                .removeClass('isPressed')
+                                .removeClass('isHover')
+                                .removeClass('isFocused');
                             isDisabled = true;
                         } else{
                             realButton.removeAttribute('disabled');
                             wrapper.removeClass('isDisabled');
                             isDisabled = false;
                         }
-                        if (!$d.isOldIE) {
-                            realButton.isDisabled = isDisabled;
-                        }
                     }
+                });
+            },
 
-                    disabled(isDisable);
+            disable: function(isDisable){
+                return this.each(function() {
+                    var $this = $(this),
+                        realButton = $this[0];
+
+                    realButton.setDisable(isDisable)
                 });
             }
         };
