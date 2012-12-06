@@ -4,7 +4,7 @@
  */
 
 (function($){
-    var $d = $().$d;
+    var $d = $.$d;
 
     $.fn.ischeckbox = function() {
 

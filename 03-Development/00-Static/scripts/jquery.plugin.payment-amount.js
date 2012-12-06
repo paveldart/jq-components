@@ -5,7 +5,7 @@
 
 //todo переосмыслить/переписать
 (function($){
-    var $d = $().$d;
+    var $d = $.$d;
 
     $.fn.paymentAmount = function() {
 

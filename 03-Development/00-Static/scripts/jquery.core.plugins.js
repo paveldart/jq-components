@@ -1,6 +1,6 @@
 //jQ check version and CSS-features in browser
 
-$.prototype.$d = function(){
+$.$d = function(){
     var html = document.documentElement,
         testElemStyle = document.createElement('div').style,
         htmlClass = '',

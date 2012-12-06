@@ -5,7 +5,7 @@
  */
 
 (function($){
-    var $d = $().$d,
+    var $d = $.$d,
         u,
         methods = {
             init: function() {
@@ -228,17 +228,14 @@
                             }
                         }
                     };
-                    //                    check default values
+//                    check default values
                     realButton.setDisable((realButton.disabled === true) || (realButton.getAttribute('disabled') === 'disabled'));
                 });
             },
 
             disable: function(isDisable){
                 return this.each(function() {
-                    var $this = $(this),
-                        realButton = $this[0];
-
-                    realButton.setDisable(isDisable);
+                    $(this)[0].setDisable(isDisable);
                 });
             }
         };
