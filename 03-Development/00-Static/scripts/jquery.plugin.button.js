@@ -36,29 +36,18 @@
                         wrapper = visualButton;
                     }
 
-//                    check default values
-                    if (realButton.disabled || isDisabled) {
-                        wrapper.addClass('isDisabled');
-                        blur();
-                        isDisabled = true;
-                    } else {
-                        wrapper.removeClass('isDisabled');
-                        isDisabled = false;
-                    }
-
 //                    action
                     if ((realButton.tagName === 'A') && (realButton.href.length > 0)){
                         if (realButton.target !== '') {
                             action = function(){
                                 window.open(realButton.href, realButton.target);
                             };
-                        }
-                        else if (realButton.target === '') {
+                        } else if (realButton.target === '') {
                             action = function(){
                                 window.location.href = realButton.href;
                             };
                         }
-                    } else if((realButton.tagName === 'INPUT') && (realButton.type === 'submit')){
+                    } else if ((realButton.tagName === 'INPUT') && (realButton.type === 'submit')){
                         form = $this.closest('form')[0];
                         if (form !== u) {
                             action = function(){
@@ -224,19 +213,23 @@
                     $this.on('blur', commonBlur);
 
                     realButton.setDisable = function(isDisable){
-                        if (isDisable){
-                            realButton.setAttribute('disabled', 'disabled');
-                            wrapper.addClass('isDisabled')
-                                .removeClass('isPressed')
-                                .removeClass('isHover')
-                                .removeClass('isFocused');
-                            isDisabled = true;
-                        } else{
-                            realButton.removeAttribute('disabled');
-                            wrapper.removeClass('isDisabled');
-                            isDisabled = false;
+                        if (isDisable !== isDisabled){
+                            if (isDisable){
+                                realButton.setAttribute('disabled', 'disabled');
+                                wrapper.addClass('isDisabled')
+                                    .removeClass('isPressed')
+                                    .removeClass('isHover')
+                                    .removeClass('isFocused');
+                                isDisabled = true;
+                            } else{
+                                realButton.removeAttribute('disabled');
+                                wrapper.removeClass('isDisabled');
+                                isDisabled = false;
+                            }
                         }
-                    }
+                    };
+                    //                    check default values
+                    realButton.setDisable((realButton.disabled === true) || (realButton.getAttribute('disabled') === 'disabled'));
                 });
             },
 
@@ -245,7 +238,7 @@
                     var $this = $(this),
                         realButton = $this[0];
 
-                    realButton.setDisable(isDisable)
+                    realButton.setDisable(isDisable);
                 });
             }
         };
