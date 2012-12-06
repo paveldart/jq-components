@@ -38,9 +38,11 @@
 </head>
 <body>
    <h3>Button</h3>
-   <div class="jsVisualButton cancel-button">
-       <input type="button" class="jsRealButton addDisabledButton" />
-       <span>Add Disable</span>
+   <div class="jsButtonWrapper cancel-button">
+       <div class="jsVisualButton">
+           <input type="button" class="jsRealButton addDisabledButton" />
+           <span>Add Disable</span>
+       </div>
    </div>
    <div class="jsVisualButton default-button">
        <input type="button" class="jsRealButton removeDisabledButton" />
@@ -50,9 +52,17 @@
        <input type="button" class="jsRealButton disableButton" />
        <span>button input</span>
    </div>
-   <div class="jsVisualButton confirm-button">
-       <input type="button" class="jsRealButton disableButton" />
-       <span>button input 2</span>
+   <div class="jsButtonWrapper confirm-button rbs-element">
+       <div class="rbs-top">
+           <div class="rbs-top-center"></div>
+           <div class="rbs-top-left"></div>
+       </div>
+       <div class="">
+           <div class="jsVisualButton">
+               <input type="button" class="jsRealButton disableButton" />
+               <span>button input 2</span>
+           </div>
+       </div>
    </div>
 </body>
 </html>

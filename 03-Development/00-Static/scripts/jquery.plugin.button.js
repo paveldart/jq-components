@@ -6,13 +6,15 @@
 
 (function($){
     var $d = $().$d,
+        u,
         methods = {
             init: function() {
 
                 return this.each(function() {
-                    var $this = $(this), // realInput
-                        wrapper = $this.parent(), //visualInput
-                        buttonDom = $this[0],
+                    var $this = $(this),
+                        realButton = $this[0],
+                        visualButton = $this.parent('.jsVisualButton'),
+                        wrapper,
                         form,
                         action,
                         eventAction,
@@ -22,8 +24,16 @@
                         isDisabled = false,
                         isKeyDown = false;
 
+//                    wrapper search
+                    if (visualButton.parents('.jsButtonWrapper')[0] !== u) {
+                        wrapper = visualButton.parents('.jsButtonWrapper')[0];
+                        wrapper = $(wrapper);
+                    } else {
+                        wrapper = visualButton;
+                    }
+
 //                    check default values
-                    if (buttonDom.disabled || (buttonDom.getAttribute('disabled') === 'disabled')) {
+                    if (realButton.disabled || realButton.isDisabled) {
                         wrapper.addClass('isDisabled');
                         blur();
                         isDisabled = false;
@@ -33,20 +43,20 @@
                     }
 
 //                    action
-                    if ((buttonDom.tagName == 'A') && (buttonDom.href.length > 0)){
-                        if (buttonDom.target != '') {
+                    if ((realButton.tagName === 'A') && (realButton.href.length > 0)){
+                        if (realButton.target !== '') {
                             action = function(){
-                                window.open(buttonDom.href, buttonDom.target);
+                                window.open(realButton.href, realButton.target);
                             };
                         }
-                        else if (buttonDom.target === '') {
+                        else if (realButton.target === '') {
                             action = function(){
-                                window.location.href = buttonDom.href;
+                                window.location.href = realButton.href;
                             };
                         }
-                    } else if((buttonDom.tagName == 'INPUT') && (buttonDom.type == 'submit')){
+                    } else if((realButton.tagName === 'INPUT') && (realButton.type === 'submit')){
                         form = $this.closest('form')[0];
-                        if (form !== undefined) {
+                        if (form !== u) {
                             action = function(){
                                 form.submit();
                             }
@@ -69,15 +79,77 @@
                                .removeClass('isPressed');
                         isPressed = isKeyDown = isFocused = false;
                     }
+                    function commonBlur(){
+                        if ($d.isOldIE && isHover){
+                            $this.focus();
+                            return false;
+                        }
+                        blur();
+                    }
                     function removePress(){
                         if (!isKeyDown){
                             wrapper.removeClass('isPressed');
                         }
                     }
 
+//                    touch function
+                    function touchStart(e){
+                        e.preventDefault();
+                        if (!realButton.isDisabled){
+                            isPressed = true;
+                            if (!isFocused){
+                                $this.focus();
+                            }
+                            wrapper.addClass( 'isPressed');
+                        }
+                    }
+                    function touchEnd(e){
+                        if (!realButton.isDisabled && isPressed){
+                            isPressed = false;
+                            removePress();
+                            action(e);
+                        }
+                    }
+
+//                    mouse function
+                    function mouseDown(e){
+                        e.preventDefault();
+                        if (!realButton.isDisabled && (e.button !== 2)){
+                            isPressed = true;
+                            if (!isFocused){
+                                $this.focus();
+                            }
+                            wrapper.addClass('isPressed');
+                        }
+                    }
+                    function mouseUp(e){
+                        if (!realButton.isDisabled && (e.button !== 2)){
+                            isPressed = false;
+                            if (!isKeyDown){
+                                removePress();
+                                action(e);
+                            }
+                        }
+                    }
+                    function documentMouseUp(){
+                        removePress();
+                        isPressed = false;
+                    }
+
+                    function mouseEnter(){
+                        if (!realButton.isDisabled) {
+                            wrapper.addClass('isHover');
+                            isHover = true;
+                        }
+                    }
+                    function mouseLeave(){
+                        wrapper.removeClass('isHover');
+                        isHover = false;
+                    }
+
 //                    key-function
                     function keyDown(e, code){
-                        if ((code == 13) || (code == 32)){
+                        if ((code === 13) || (code === 32)){
                             e.preventDefault();
                             e.stopPropagation();
                             isKeyDown = true;
@@ -92,8 +164,8 @@
                         keyDown(e, e.which);
                     }
                     function commonKeyDown(e){
-                        if ((e.keyCode == 9) && ($d.isIE && ($d.browserVersion < 9))){
-                            if (buttonDom.getAttribute('disabled') !== 'disabled') {
+                        if ((e.keyCode === 9) && $d.isOldIE){
+                            if (!realButton.isDisabled) {
                                 wrapper.removeClass('isFocused').removeClass('isPressed');
                                 isFocused = false;
                             }
@@ -101,7 +173,7 @@
                         keyDown(e, e.keyCode);
                     }
                     function keyUp(e){
-                        if ((e.keyCode == 13) || (e.keyCode == 32)){
+                        if ((e.keyCode === 13) || (e.keyCode === 32)){
                             e.preventDefault();
                             e.stopPropagation();
                             isKeyDown = false;
@@ -125,97 +197,56 @@
                     wrapper.on('keyup', keyUp);
 
                     if ($d.isTouch){
-
-//                    for touch
-                        wrapper.on('touchstart', function(e){
-                            e.preventDefault();
-                            if (buttonDom.getAttribute('disabled') !== 'disabled'){
-                                isPressed = true;
-                                if (!isFocused){
-                                    $this.focus();
-                                }
-                                wrapper.addClass( 'isPressed');
-                            }
-                        });
-                        $(window.document).on('touchend', function(e){
-                            if ((buttonDom.getAttribute('disabled') !== 'disabled') && isPressed){
-                                isPressed = false;
-                                removePress();
-                                action(e);
-                            }
-                        });
+//                        for touch
+                        wrapper.on('touchstart', touchStart);
+                        $(document).on('touchend', touchEnd);
 
                     } else{
+//                       for mouse
+                        wrapper.on('mousedown', mouseDown);
+                        wrapper.on('mouseup', mouseUp);
+                        $(document).on('mouseup', documentMouseUp);
 
-//                     for mouse
-                        wrapper.on({
-                            mousedown: function(e){
-                                e.preventDefault();
-                                if ((buttonDom.getAttribute('disabled') !== 'disabled') && (e.button != 2)){
-                                    isPressed = true;
-                                    if (!isFocused){
-                                        $this.focus();
-                                    }
-                                    wrapper.addClass('isPressed');
-                                }
-                            },
-                            mouseup: function(e){
-                                if ((buttonDom.getAttribute('disabled') !== 'disabled') && (e.button != 2)){
-                                    isPressed = false;
-                                    if (!isKeyDown){
-                                        removePress();
-                                        action(e);
-                                    }
-                                }
-                            }
-                        });
-
-                        $(window.document).on('mouseup', function(){
-                            isPressed = false;
-                        });
-//                     hover
-                        wrapper.on({
-                            mouseenter: function() {
-                                if (buttonDom.getAttribute('disabled') !== 'disabled') {
-                                    wrapper.addClass('isHover');
-                                    isHover = true;
-                                }
-                            },
-                            mouseleave: function() {
-                                wrapper.removeClass('isHover');
-                                isHover = false;
-                            }
-                        });
+//                        hover
+                        wrapper.on('mouseenter', mouseEnter);
+                        wrapper.on('mouseleave', mouseLeave);
                     }
 
                     $this.on('focus', focus);
-                    $this.on('blur', function (){
-                        if ($d.isIE && ($d.browserVersion < 9) && isHover){
-                            $this.focus();
-                            return false;
-                        }
-                        blur();
-                    });
+                    $this.on('blur', commonBlur);
                 });
             },
 
             disable: function(isDisable){
                 return this.each(function() {
                     var $this = $(this),
-                        buttonDom = $(this)[0],
-                        wrapper = $this.parent();
+                        realButton = $this[0],
+                        visualButton = $this.parent('.jsVisualButton'),
+                        wrapper,
+                        isDisabled = false;
+
+//                    wrapper search
+                    if (visualButton.parents('.jsButtonWrapper')[0] !== u) {
+                        wrapper = visualButton.parents('.jsButtonWrapper')[0];
+                        wrapper = $(wrapper);
+                    } else {
+                        wrapper = visualButton;
+                    }
 
                     function disabled(isDisable){
                         if (isDisable){
-                            buttonDom.setAttribute('disabled', 'disabled');
+                            realButton.setAttribute('disabled', 'disabled');
                             wrapper.addClass('isDisabled')
                                    .removeClass('isPressed')
                                    .removeClass('isHover')
                                    .removeClass('isFocused');
+                            isDisabled = true;
                         } else{
-                            buttonDom.removeAttribute('disabled');
+                            realButton.removeAttribute('disabled');
                             wrapper.removeClass('isDisabled');
+                            isDisabled = false;
                         }
+                        realButton.isDisabled = isDisabled;
                     }
 
                     disabled(isDisable);
@@ -226,10 +257,8 @@
     $.fn.button = function(method){
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || ! method) {
-            return methods.init.apply(this, arguments);
         } else {
-            // error
+            return methods.init.apply(this, arguments);
         }
     };
 })(jQuery);
