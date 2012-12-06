@@ -24,10 +24,14 @@
                         isDisabled = false,
                         isKeyDown = false;
 
+//                    visualButton search
+                    if ($this.closest('.jsVisualButton')[0] !== u) {
+                        visualButton = $this.closest('.jsVisualButton');
+                    }
+
 //                    wrapper search
-                    if (visualButton.parents('.jsButtonWrapper')[0] !== u) {
-                        wrapper = visualButton.parents('.jsButtonWrapper')[0];
-                        wrapper = $(wrapper);
+                    if (visualButton.closest('.jsButtonWrapper')[0] !== u) {
+                        wrapper = visualButton.closest('.jsButtonWrapper');
                     } else {
                         wrapper = visualButton;
                     }
@@ -36,10 +40,18 @@
                     if (realButton.disabled || realButton.isDisabled) {
                         wrapper.addClass('isDisabled');
                         blur();
-                        isDisabled = false;
+                        if (!$d.isOldIE) {
+                            realButton.isDisabled = isDisabled = true;
+                        } else {
+                            isDisabled = true;
+                        }
                     } else {
                         wrapper.removeClass('isDisabled');
-                        isDisabled = true;
+                        if (!$d.isOldIE) {
+                            realButton.isDisabled = isDisabled = false;
+                        } else {
+                            isDisabled = false;
+                        }
                     }
 
 //                    action
@@ -221,14 +233,18 @@
                 return this.each(function() {
                     var $this = $(this),
                         realButton = $this[0],
-                        visualButton = $this.parent('.jsVisualButton'),
+                        visualButton,
                         wrapper,
                         isDisabled = false;
 
+//                    visualButton search
+                    if ($this.closest('.jsVisualButton')[0] !== u) {
+                        visualButton = $this.closest('.jsVisualButton');
+                    }
+
 //                    wrapper search
-                    if (visualButton.parents('.jsButtonWrapper')[0] !== u) {
-                        wrapper = visualButton.parents('.jsButtonWrapper')[0];
-                        wrapper = $(wrapper);
+                    if (visualButton.closest('.jsButtonWrapper')[0] !== u) {
+                        wrapper = visualButton.closest('.jsButtonWrapper');
                     } else {
                         wrapper = visualButton;
                     }
@@ -246,7 +262,9 @@
                             wrapper.removeClass('isDisabled');
                             isDisabled = false;
                         }
-                        realButton.isDisabled = isDisabled;
+                        if (!$d.isOldIE) {
+                            realButton.isDisabled = isDisabled;
+                        }
                     }
 
                     disabled(isDisable);
