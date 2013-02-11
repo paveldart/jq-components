@@ -5,12 +5,14 @@
 
 (function($){
     var $d = $.$d,
+        u,
         methods = {
             init: function() {
 
                 return this.each(function () {
                     var $this = $(this),
                         wrapper = $this.parent(),
+                        label = wrapper.parent().children('.text-label'),
                         trueInput = $this[0],
                         isPressed = false,
                         isFocused = false,
@@ -41,6 +43,14 @@
                             wrapper.removeClass('isFocused').removeClass('isPressed');
                         }
                     });
+
+                    if (label !== u) {
+                        label.on({
+                            click: function() {
+                                $this.trigger('focus');
+                            }
+                        });
+                    }
 
                     trueInput.setDisable = function(isDisable){
                         if (isDisable !== isDisabled){
