@@ -81,10 +81,10 @@
                         }
                     }, 10);
 
-////                    for test
-//                    $this.bind('___valueChange', function () {
-//                        console.log('__valueChange');
-//                    } );
+//                    for test
+                    $this.bind('__valueChange', function () {
+                        console.log('__valueChange');
+                    } );
                 })
             },
 
