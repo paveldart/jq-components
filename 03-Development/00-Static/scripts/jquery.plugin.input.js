@@ -17,7 +17,9 @@
                         isPressed = false,
                         isFocused = false,
                         isHover = false,
-                        isDisabled = false;
+                        isDisabled = false,
+                        valueCache = trueInput.value,
+                        interval;
 
                     $this.on({
         //                hover
@@ -71,6 +73,18 @@
 //                    check default values
 
                     trueInput.setDisable((trueInput.disabled === true) || (trueInput.getAttribute('disabled') === 'disabled'));
+
+                    interval = window.setInterval(function(){
+                        if (valueCache !== trueInput.value){
+                            valueCache = trueInput.value;
+                            $this.trigger('__valueChange');
+                        }
+                    }, 10);
+
+////                    for test
+//                    $this.bind('___valueChange', function () {
+//                        console.log('__valueChange');
+//                    } );
                 })
             },
 
